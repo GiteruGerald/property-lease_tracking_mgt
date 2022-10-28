@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Location::class, function (Faker $faker) {
     return [
-        'name' => Str::random(10),
+        'name' => $faker->state,
        
     ];
 });

@@ -10,11 +10,11 @@ use Illuminate\Support\Str;
 
 $factory->define(Property::class, function (Faker $faker) {
     return [
-        'name' => Str::random(10),
-        'category' => Str::random(10),
-        'type' => Str::random(10),
+        'name' => $faker->company,
+        'category' => $faker->word,
+        'type' => $faker->word,
         'location_id' => $this->faker->randomDigit,
         'price/value' => $this->faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL),
-        'description' =>$this->faker->words,
+        'description' =>$this->faker->words(7, true),
     ]; 
 });

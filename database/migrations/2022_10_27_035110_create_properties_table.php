@@ -20,10 +20,10 @@ class CreatePropertiesTable extends Migration
             $table->string('category'); 
             $table->string('type');
 
-            $table->unsignedBigInteger('location_id');
+            $table->unsignedBigInteger('location_id')->default(0);
             $table->foreign('location_id')->references('id')->on('locations')->nullable();
             
-            $table->unsignedBigInteger('price/value');
+            $table->unsignedBigInteger('price/value')->default(0);
             $table->string('featured_image')->default('https://picsum.photos/1200/800');
             $table->longText('description')->nullable();
 
