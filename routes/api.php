@@ -1,7 +1,8 @@
 <?php
 
-// use App\Http\Controllers\API\PropertiesController;
-use Illuminate\Http\Request;
+// use App\Http\Controllers\API\PropertyController;
+// use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResource('properties', PropertiesController::class); 
+Route::apiResource('properties', PropertyController::class); 
+Route::apiResource('locations', LocationController::class); 

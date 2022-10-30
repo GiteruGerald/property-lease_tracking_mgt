@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Property;
@@ -15,7 +15,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return Property::all();
+        return  Property::all();
     }
 
     /**
