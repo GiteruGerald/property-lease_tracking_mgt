@@ -15,7 +15,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return  Property::all();
+        return  Property::latest()->get();
     }
 
     /**
@@ -27,6 +27,8 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         //
+
+
     }
 
     /**

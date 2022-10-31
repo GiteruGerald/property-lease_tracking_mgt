@@ -23,7 +23,7 @@ class CreatePropertiesTable extends Migration
             $table->unsignedBigInteger('location_id')->default(0);
             $table->foreign('location_id')->references('id')->on('locations')->nullable();
             
-            $table->unsignedBigInteger('price/value')->default(0);
+            $table->unsignedBigInteger('value')->default(0);
             $table->string('featured_image')->default('https://picsum.photos/1200/800');
             $table->longText('description')->nullable();
 

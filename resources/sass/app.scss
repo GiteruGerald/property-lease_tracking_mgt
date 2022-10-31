@@ -4,5 +4,20 @@
 // Variables
 @import 'variables';
 
+// FontAwesome
+$fa-font-path: "../webfonts";
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Adminlte
+@import "~admin-lte/dist/css/adminlte.css";
+
+// importing core styling file
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+
+// our project needs Solid + Brands
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+

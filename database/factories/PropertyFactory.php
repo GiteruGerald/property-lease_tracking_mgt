@@ -14,7 +14,7 @@ $factory->define(Property::class, function (Faker $faker) {
         'category' => $faker->word,
         'type' => $faker->word,
         'location_id' => $this->faker->randomDigit,
-        'price/value' => $this->faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL),
+        'value' => $this->faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL),
         'description' =>$this->faker->words(7, true),
     ]; 
 });
