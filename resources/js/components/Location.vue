@@ -4,7 +4,7 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Properties Table</h3>
+            <h3 class="card-title">Locations</h3>
 
             <div class="card-tools">
               <button class="btn btn-outline-success" @click="newModal">
@@ -20,21 +20,13 @@
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Name</th>
-                  <th>Category</th>
-                  <th>Type</th>
-                  <th>Price</th>
                   <th>Options</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(property, index) in properties" :key="property.id">
+                <tr v-for="(location, index) in locations" :key="location.id">
                   <td>{{ index + 1 }}</td>
-                  <td>{{ property.name }}</td>
-                  <td>{{ property.category }}</td>
-                  <td>{{ property.type }}</td>
-                  <td>{{ property.value }}</td>
-                  <!-- <td>{{ property.location }}</td> -->
-                  <!-- <td></td> -->
+                  <td>{{ location.name }}</td>
                   <td>
                     <a href="#">
                       <i class="fa fa-edit"></i>
@@ -63,7 +55,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addNewModalLabel">Add Property</h5>
+            <h5 class="modal-title" id="addNewModalLabel">Add Location</h5>
   
             <button
               type="button"
@@ -75,11 +67,11 @@
             </button>
           </div>
   
-          <form @submit.prevent="createProperty()">
+          <form @submit.prevent="createLocation()">
             <div class="modal-body">
               <div class="modal-body">
                 <div class="form-group">
-                  <label class="col-sm-5 col-form-label">Name of User</label>
+                  <label class="col-sm-5 col-form-label">Name of Location</label>
   
                   <input
                     v-model="form.name"
@@ -88,40 +80,7 @@
                     placeholder="Enter User name"
                     class="form-control"
                   />
-  
-                  <div class="form-group">
-                    <label class="col-sm-5 col-form-label">Property Category</label>
-  
-                    <input
-                      v-model="form.category"
-                      type="text"
-                      name="Category"
-                      placeholder="Category"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-5 col-form-label">Property Type</label>
-  
-                    <input
-                      v-model="form.type"
-                      type="text"
-                      name="type"
-                      placeholder="Enter Property Type"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-5 col-form-label">Price/Value</label>
-  
-                    <input
-                      v-model="form.price"
-                      type="number"
-                      name="price"
-                      placeholder="Enter Value of Property"
-                      class="form-control"
-                    />
-                  </div>
+ 
                 </div>
               </div>
             </div>
@@ -141,32 +100,37 @@
 
 <script setup>
 import axios from "axios";
-import { ref, onMounted, reactive, onBeforeMount } from "vue";
+import { ref, onMounted, reactive } from "vue";
 
-const properties = ref({});
+const locations = ref({});
 const form = reactive({
     name:"",
-    category:"",
-    type:"",
-    price:"",
+   
 });
 const newModal = () => {
   $("#addNewModal").modal("show");
 };
 
-const getProperties = ()=>{
-    axios.get("/api/properties")
+const getLocations = ()=>{
+    axios.get("/api/locations")
         .then((response)=>{
-            properties.value = response.data;
-            // console.log(response.data);
+            locations.value = response.data;
         })
 };
 
-const createProperty = ()=>{
+const createLocation = ()=>{
+  axios.post('api/locations', form)
+    .then((response)=>{
+      form.name = '';
+      $("#addNewModal").modal("hide");
 
+    })
+    .catch((er)=>{
+      console.log(er)
+    })
 }
 
 onMounted(()=>{
-    getProperties();
+    getLocations();
 })
 </script>

@@ -26,7 +26,12 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|string|max:40',
+         ]);
+        return Location::create([
+            'name' => $request->name,
+        ]);
     }
 
     /**

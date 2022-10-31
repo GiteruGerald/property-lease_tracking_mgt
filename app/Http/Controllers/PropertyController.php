@@ -15,7 +15,8 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return  Property::latest()->get();
+        $item = Property::find(1);
+        return $item->location;
     }
 
     /**

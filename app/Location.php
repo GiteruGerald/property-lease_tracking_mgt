@@ -8,5 +8,9 @@ class Location extends Model
 {
     //
 
-    protected $fillable = ['nanme'];
+    protected $fillable = ['name'];
+
+    public function properties(){
+        return $this->hasMany('App\Property');
+    }
 }
