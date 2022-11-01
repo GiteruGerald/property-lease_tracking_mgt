@@ -122,6 +122,13 @@
                       class="form-control"
                     />
                   </div>
+                  <div class="form-group">
+                            <label>Select Location:</label>
+                            <select class='form-control' v-model='form.location'>
+                                <option value='0' >Select Location</option>
+                                <option v-for='data in locations' :value='data.id'>{{ data.name }}</option>
+                            </select>
+                        </div>
                 </div>
               </div>
             </div>
@@ -144,11 +151,13 @@ import axios from "axios";
 import { ref, onMounted, reactive, onBeforeMount } from "vue";
 
 const properties = ref({});
+const locations = ref({});
 const form = reactive({
     name:"",
     category:"",
     type:"",
     price:"",
+    location:"",
 });
 const newModal = () => {
   $("#addNewModal").modal("show");
@@ -162,11 +171,19 @@ const getProperties = ()=>{
         })
 };
 
+const getLocations = ()=>{
+  axios.get('/api/locations')
+    .then((response)=>{
+        locations.value = response.data;
+    })
+}
+
 const createProperty = ()=>{
 
 }
 
 onMounted(()=>{
     getProperties();
+    getLocations();
 })
 </script>

@@ -6372,11 +6372,13 @@ __webpack_require__.r(__webpack_exports__);
   __name: 'Properties',
   setup: function setup(__props) {
     var properties = Object(vue__WEBPACK_IMPORTED_MODULE_1__["ref"])({});
+    var locations = Object(vue__WEBPACK_IMPORTED_MODULE_1__["ref"])({});
     var form = Object(vue__WEBPACK_IMPORTED_MODULE_1__["reactive"])({
       name: "",
       category: "",
       type: "",
-      price: ""
+      price: "",
+      location: ""
     });
     var newModal = function newModal() {
       $("#addNewModal").modal("show");
@@ -6388,16 +6390,24 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
+    var getLocations = function getLocations() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/locations').then(function (response) {
+        locations.value = response.data;
+      });
+    };
     var createProperty = function createProperty() {};
     Object(vue__WEBPACK_IMPORTED_MODULE_1__["onMounted"])(function () {
       getProperties();
+      getLocations();
     });
     return {
       __sfc: true,
       properties: properties,
+      locations: locations,
       form: form,
       newModal: newModal,
       getProperties: getProperties,
+      getLocations: getLocations,
       createProperty: createProperty
     };
   }
@@ -6790,7 +6800,38 @@ var render = function render() {
         _vm.$set(_setup.form, "price", $event.target.value);
       }
     }
-  })])])])]), _vm._v(" "), _vm._m(3)])])])])]);
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", [_vm._v("Select Location:")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _setup.form.location,
+      expression: "form.location"
+    }],
+    staticClass: "form-control",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_setup.form, "location", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: "0"
+    }
+  }, [_vm._v("Select Location")]), _vm._v(" "), _vm._l(_setup.locations, function (data) {
+    return _c("option", {
+      domProps: {
+        value: data.id
+      }
+    }, [_vm._v(_vm._s(data.name))]);
+  })], 2)])])])]), _vm._v(" "), _vm._m(3)])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -57988,8 +58029,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\pms_practical\v2\property-lease_tracking_mgt\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\pms_practical\v2\property-lease_tracking_mgt\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\property_\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\property_\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
