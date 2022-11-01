@@ -6378,7 +6378,8 @@ __webpack_require__.r(__webpack_exports__);
       category: "",
       type: "",
       price: "",
-      location: ""
+      location: "",
+      description: ""
     });
     var newModal = function newModal() {
       $("#addNewModal").modal("show");
@@ -6831,7 +6832,32 @@ var render = function render() {
         value: data.id
       }
     }, [_vm._v(_vm._s(data.name))]);
-  })], 2)])])])]), _vm._v(" "), _vm._m(3)])])])])]);
+  })], 2)])]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "col-sm-5 col-form-label"
+  }, [_vm._v("Description")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _setup.form.desc,
+      expression: "form.desc"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "exampleFormControlTextarea1",
+      rows: "3"
+    },
+    domProps: {
+      value: _setup.form.desc
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_setup.form, "desc", $event.target.value);
+      }
+    }
+  })])])]), _vm._v(" "), _vm._m(3)])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

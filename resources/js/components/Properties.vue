@@ -130,6 +130,10 @@
                             </select>
                         </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-5 col-form-label">Description</label>
+                    <textarea class="form-control" v-model="form.desc" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -158,6 +162,7 @@ const form = reactive({
     type:"",
     price:"",
     location:"",
+    description:"",
 });
 const newModal = () => {
   $("#addNewModal").modal("show");
