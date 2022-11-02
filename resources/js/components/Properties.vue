@@ -20,7 +20,6 @@
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Name</th>
-                  <th>Category</th>
                   <th>Type</th>
                   <th>Price</th>
                   <th>Options</th>
@@ -30,7 +29,6 @@
                 <tr v-for="(property, index) in properties" :key="property.id">
                   <td>{{ index + 1 }}</td>
                   <td>{{ property.name }}</td>
-                  <td>{{ property.category }}</td>
                   <td>{{ property.type }}</td>
                   <td>{{ property.value }}</td>
                   <!-- <td>{{ property.location }}</td> -->
@@ -40,7 +38,7 @@
                       <i class="fa fa-edit"></i>
                     </a>
                     /
-                    <a href="#">
+                    <a href="#" @click="deleteProperty(property.id)">
                       <i class="fa fa-trash red"></i>
                     </a>
                   </td>
@@ -90,34 +88,21 @@
                   />
   
                   <div class="form-group">
-                    <label class="col-sm-5 col-form-label">Property Category</label>
-  
-                    <input
-                      v-model="form.category"
-                      type="text"
-                      name="Category"
-                      placeholder="Category"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
                     <label class="col-sm-5 col-form-label">Property Type</label>
-  
-                    <input
-                      v-model="form.type"
-                      type="text"
-                      name="type"
-                      placeholder="Enter Property Type"
-                      class="form-control"
-                    />
+                    <select class='form-control' v-model='form.type'>
+                                <option value='0' >Select Location</option>
+                                <option value='Residential'>Residential</option>
+                                <option value='Commercial'>Commercial</option>
+                                <option value='Industrial'>Industrial</option>
+                            </select>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-5 col-form-label">Price/Value</label>
   
                     <input
-                      v-model="form.price"
+                      v-model="form.value"
                       type="number"
-                      name="price"
+                      name="value"
                       placeholder="Enter Value of Property"
                       class="form-control"
                     />
@@ -150,6 +135,13 @@
 
 </template>
 
+<!-- <script setup>
+import useProperties from '../composables/properties';
+import { onMounted } from 'vue';
+
+const {properties, getProperies} = useProperties()
+
+</script> -->
 <script setup>
 import axios from "axios";
 import { ref, onMounted, reactive, onBeforeMount } from "vue";
@@ -158,9 +150,8 @@ const properties = ref({});
 const locations = ref({});
 const form = reactive({
     name:"",
-    category:"",
     type:"",
-    price:"",
+    value:"",
     location:"",
     description:"",
 });
@@ -171,7 +162,7 @@ const newModal = () => {
 const getProperties = ()=>{
     axios.get("/api/properties")
         .then((response)=>{
-            properties.value = response.data;
+            properties.value = response.data.data;
             // console.log(response.data);
         })
 };
@@ -183,9 +174,37 @@ const getLocations = ()=>{
     })
 }
 
-const createProperty = ()=>{
+  const createProperty = ()=>{
+        try {
+            axios.post('/api/properties', form)
+              .then((response)=>{
+                form.name = '';
+                form.type = '';
+                form.location = '';
+                form.price = '';
+                form.description= '';
 
-}
+                $('#addNewModal').modal('hide')
+              })
+            // await router.push({name:'properties.index'})
+        } catch (e) {
+            console.log(e.message)
+        }
+    }
+
+  const deleteProperty = (id)=>{
+    if (!window.confirm('You sure?')) {
+        return
+      }else{
+
+        try {
+          axios.delete(`/api/properties/${id}`)
+          
+        } catch (error) {
+          console.log(error.message)
+        }
+      }
+  }
 
 onMounted(()=>{
     getProperties();

@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 $factory->define(Property::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
-        'category' => $faker->word,
         'type' => $faker->word,
         'location_id' => $this->faker->randomDigit,
         'value' => $this->faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL),

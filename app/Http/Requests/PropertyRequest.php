@@ -26,9 +26,9 @@ class PropertyRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'type' => ['required', 'email'],
-            'category' => ['nullable', 'string'],
-            'location' => ['nullable', 'number'],
-            'value' => ['nullable', 'number'],
+            'location_id' => ['required', 'numeric'],
+            'value' => ['required', 'numeric'],
+            // 'featured_image' => ['nullable'],
             'description' => ['nullable', 'string'],
         ];
     }

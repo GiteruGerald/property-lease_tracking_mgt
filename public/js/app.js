@@ -6375,9 +6375,8 @@ __webpack_require__.r(__webpack_exports__);
     var locations = Object(vue__WEBPACK_IMPORTED_MODULE_1__["ref"])({});
     var form = Object(vue__WEBPACK_IMPORTED_MODULE_1__["reactive"])({
       name: "",
-      category: "",
       type: "",
-      price: "",
+      value: "",
       location: "",
       description: ""
     });
@@ -6386,7 +6385,7 @@ __webpack_require__.r(__webpack_exports__);
     };
     var getProperties = function getProperties() {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/properties").then(function (response) {
-        properties.value = response.data;
+        properties.value = response.data.data;
         // console.log(response.data);
       });
     };
@@ -6396,7 +6395,32 @@ __webpack_require__.r(__webpack_exports__);
         locations.value = response.data;
       });
     };
-    var createProperty = function createProperty() {};
+    var createProperty = function createProperty() {
+      try {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/properties', form).then(function (response) {
+          form.name = '';
+          form.type = '';
+          form.location = '';
+          form.price = '';
+          form.description = '';
+          $('#addNewModal').modal('hide');
+        });
+        // await router.push({name:'properties.index'})
+      } catch (e) {
+        console.log(e.message);
+      }
+    };
+    var deleteProperty = function deleteProperty(id) {
+      if (!window.confirm('You sure?')) {
+        return;
+      } else {
+        try {
+          axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/properties/".concat(id));
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
+    };
     Object(vue__WEBPACK_IMPORTED_MODULE_1__["onMounted"])(function () {
       getProperties();
       getLocations();
@@ -6409,7 +6433,8 @@ __webpack_require__.r(__webpack_exports__);
       newModal: newModal,
       getProperties: getProperties,
       getLocations: getLocations,
-      createProperty: createProperty
+      createProperty: createProperty,
+      deleteProperty: deleteProperty
     };
   }
 });
@@ -6669,7 +6694,18 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_setup.properties, function (property, index) {
     return _c("tr", {
       key: property.id
-    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(property.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(property.category))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(property.type))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(property.value))]), _vm._v(" "), _vm._m(1, true)]);
+    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(property.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(property.type))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(property.value))]), _vm._v(" "), _c("td", [_vm._m(1, true), _vm._v("\n                  /\n                  "), _c("a", {
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          return _setup.deleteProperty(property.id);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-trash red"
+    })])])]);
   }), 0)])])])])]), _vm._v(" "), _c("div", {
     staticClass: "modal fade",
     attrs: {
@@ -6727,33 +6763,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "col-sm-5 col-form-label"
-  }, [_vm._v("Property Category")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _setup.form.category,
-      expression: "form.category"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      name: "Category",
-      placeholder: "Category"
-    },
-    domProps: {
-      value: _setup.form.category
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_setup.form, "category", $event.target.value);
-      }
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "col-sm-5 col-form-label"
-  }, [_vm._v("Property Type")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("Property Type")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -6761,21 +6771,34 @@ var render = function render() {
       expression: "form.type"
     }],
     staticClass: "form-control",
-    attrs: {
-      type: "text",
-      name: "type",
-      placeholder: "Enter Property Type"
-    },
-    domProps: {
-      value: _setup.form.type
-    },
     on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_setup.form, "type", $event.target.value);
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_setup.form, "type", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }, [_c("option", {
+    attrs: {
+      value: "0"
+    }
+  }, [_vm._v("Select Location")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "Residential"
+    }
+  }, [_vm._v("Residential")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "Commercial"
+    }
+  }, [_vm._v("Commercial")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "Industrial"
+    }
+  }, [_vm._v("Industrial")])])]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "col-sm-5 col-form-label"
@@ -6783,22 +6806,22 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _setup.form.price,
-      expression: "form.price"
+      value: _setup.form.value,
+      expression: "form.value"
     }],
     staticClass: "form-control",
     attrs: {
       type: "number",
-      name: "price",
+      name: "value",
       placeholder: "Enter Value of Property"
     },
     domProps: {
-      value: _setup.form.price
+      value: _setup.form.value
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_setup.form, "price", $event.target.value);
+        _vm.$set(_setup.form, "value", $event.target.value);
       }
     }
   })]), _vm._v(" "), _c("div", {
@@ -6867,24 +6890,18 @@ var staticRenderFns = [function () {
     staticStyle: {
       width: "10px"
     }
-  }, [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Category")]), _vm._v(" "), _c("th", [_vm._v("Type")]), _vm._v(" "), _c("th", [_vm._v("Price")]), _vm._v(" "), _c("th", [_vm._v("Options")])])]);
+  }, [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Type")]), _vm._v(" "), _c("th", [_vm._v("Price")]), _vm._v(" "), _c("th", [_vm._v("Options")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c,
     _setup = _vm._self._setupProxy;
-  return _c("td", [_c("a", {
+  return _c("a", {
     attrs: {
       href: "#"
     }
   }, [_c("i", {
     staticClass: "fa fa-edit"
-  })]), _vm._v("\n                  /\n                  "), _c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "fa fa-trash red"
-  })])]);
+  })]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c,
@@ -58029,6 +58046,7 @@ __webpack_require__.r(__webpack_exports__);
   component: __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]
 }, {
   path: '/properties',
+  name: 'properties.index',
   component: __webpack_require__(/*! ./components/Properties.vue */ "./resources/js/components/Properties.vue")["default"]
 }, {
   path: '/locations',

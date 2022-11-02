@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PropertyResource;
 use App\Property;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class PropertyController extends Controller
     public function index()
     {
         $item = Property::latest()->get();
-        return $item;
+        return PropertyResource::collection(Property::all());
     }
 
     /**
@@ -27,7 +28,23 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|string|max:40',
+            'type'=>'required|string',
+            'value'=>'required|numeric',
+            'location'=>'required|numeric',
+            // 'description'=>'string'
+        ]);
+        return Property::create([
+            'name'=> $request['name'],
+            'type'=> $request['type'],
+            'value'=> $request['value'],
+            'location_id'=> $request['location'],
+            'description'=> $request['description'],
+
+        ]);
+        // $property = Property::create($request->validate());
+        // return new PropertyResource($property); 
 
 
     }
@@ -61,9 +78,11 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Property $property)
     {
-        //
+        $property->delete();
+        return  ['message' => 'Property deleted'];
+
     }
 
 }
