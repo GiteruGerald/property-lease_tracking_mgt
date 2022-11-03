@@ -10,13 +10,12 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 // NPM Imports
-import VueRouter from 'vue-router'
-import Vue from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import { createApp } from 'vue'
 import Routes from "./routes";
 
-Vue.use(VueRouter)
-const router = new VueRouter({
-    mode: 'history',
+const router = new createRouter({
+    history:createWebHistory(),
     routes: Routes, // short for `routes: routes`
     linkActiveClass: 'active',
 
@@ -41,7 +40,15 @@ const router = new VueRouter({
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-    router
-});
+ const app = createApp({})
+// const app = new Vue({
+//     el: '#app',
+//     router
+// });
+app.use(router)
+app.mount('#app')
+
+// const app = new Vue({
+//     el: '#app',
+//     router
+// });

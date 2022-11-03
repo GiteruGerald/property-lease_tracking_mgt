@@ -1,13 +1,13 @@
 import { ref } from 'vue';
 import axios from 'axios';
-// import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 export default function useProperties(){
     const property = ref([])
     const properties = ref([])
 
     const errors = ref('')
-    const router = useRoute()
+    const router = useRouter()
 
     const getProperties = async ()=>{
         let response = await axios.get('/api/properties')
@@ -23,7 +23,7 @@ export default function useProperties(){
         errors.value = ''
         try {
             await axios.post('/api/properties', data)
-            // await router.push({name:'properties.index'})
+            await router.push({name:'properties.index'})
         } catch (e) {
             if(e.response.status === 422){
                 for (const key in e.response.data.errors) {
