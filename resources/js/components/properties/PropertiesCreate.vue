@@ -7,93 +7,85 @@
             <h3 class="card-title">Add New Property</h3>
 
             <div class="card-tools">
-              <!-- <button class="btn btn-outline-success" @click="newModal">
-                Add New
-                <i class="fas fa-user-plus fa-fw"></i>
-              </button> -->
-              <div class="flex mb-4 place-content-end">
-                -->
-                <div
-                  class="
-                    px-4
-                    py-2
-                    text-white
-                    bg-indigo-600
-                    cursor-pointer
-                    hover:bg-indigo-700
-                  "
-                >
-                  <router-link
-                    :to="{ name: 'properties.create' }"
-                    class="text-sm font-medium"
-                    >Create Property</router-link
-                  >
-                </div>
-              </div>
+                <button class="btn btn-outline-success" @click="()=>$router.push({name:'properties.index'})">Back</button>
             </div>
           </div>
 
           <div class="card-body">
-            <form class="space-y-6" @submit.prevent="storeProperty">
-                <div class="modal-body">
+            <form class="space-y-6" @submit.prevent="saveProperty">
               <div class="modal-body">
-                <div class="form-group">
-                  <label class="col-sm-5 col-form-label">Name of Property</label>
-  
-                  <input
-                    v-model="form.name"
-                    type="text"
-                    name="name"
-                    placeholder="Enter User name"
-                    class="form-control"
-                  />
-  
+                <div class="modal-body">
                   <div class="form-group">
-                    <label class="col-sm-5 col-form-label">Property Type</label>
-                    <select class='form-control' v-model='form.type'>
-                                <option value='0' >Select Location</option>
-                                <option value='Residential'>Residential</option>
-                                <option value='Commercial'>Commercial</option>
-                                <option value='Industrial'>Industrial</option>
-                            </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-5 col-form-label">Price/Value</label>
-  
+                    <label class="col-sm-5 col-form-label"
+                      >Name of Property</label
+                    >
+
                     <input
-                      v-model="form.value"
-                      type="number"
-                      name="value"
-                      placeholder="Enter Value of Property"
+                      v-model="form.name"
+                      type="text"
+                      name="name"
+                      placeholder="Enter User name"
                       class="form-control"
                     />
+
+                    <div class="form-group">
+                      <label class="col-sm-5 col-form-label"
+                        >Property Type</label
+                      >
+                      <select class="form-control" v-model="form.type">
+                        <option value="0">Select Location</option>
+                        <option value="Residential">Residential</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Industrial">Industrial</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-5 col-form-label">Price/Value</label>
+
+                      <input
+                        v-model="form.value"
+                        type="number"
+                        name="value"
+                        placeholder="Enter Value of Property"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Select Location:</label>
+                      <select class="form-control" v-model="form.location">
+                        <option value="0">Select Location</option>
+                        <option v-for="data in locations" :value="data.id">
+                          {{ data.name }}
+                        </option>
+                      </select>
+                    </div>
                   </div>
                   <div class="form-group">
-                            <label>Select Location:</label>
-                            <select class='form-control' v-model='form.location'>
-                                <option value='0' >Select Location</option>
-                                <option v-for='data in locations' :value='data.id'>{{ data.name }}</option>
-                            </select>
-                        </div>
-                </div>
-                <div class="form-group">
                     <label class="col-sm-5 col-form-label">Description</label>
-                    <textarea class="form-control" v-model="form.desc" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea
+                      class="form-control"
+                      v-model="form.desc"
+                      id="exampleFormControlTextarea1"
+                      rows="3"
+                    ></textarea>
                   </div>
+                </div>
               </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">
-                Close
-              </button>
-              <button type="submit" class="btn btn-primary">Create</button>
-            </div>
-    </form>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Create</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 

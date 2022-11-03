@@ -104,7 +104,7 @@
                                     </router-link>
                                 </li>
                                 <li class="nav-item">
-                                    <router-link to="/properties" class="nav-link">
+                                    <router-link to="/properties/create" class="nav-link">
                                         <i class="far fa-plus nav-icon"></i>
                                         <p>Add New</p>
                                     </router-link>
