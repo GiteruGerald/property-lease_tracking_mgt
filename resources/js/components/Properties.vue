@@ -7,10 +7,15 @@
             <h3 class="card-title">Properties Table</h3>
 
             <div class="card-tools">
-              <button class="btn btn-outline-success" @click="newModal">
+              <!-- <button class="btn btn-outline-success" @click="newModal">
                 Add New
                 <i class="fas fa-user-plus fa-fw"></i>
-              </button>
+              </button> -->
+               <div class="flex mb-4 place-content-end"> -->
+                  <div class="px-4 py-2 text-white bg-indigo-600 cursor-pointer hover:bg-indigo-700">
+                      <router-link :to="{ name: 'properties.create' }" class="text-sm font-medium">Create Property</router-link>
+                  </div>
+              </div>
             </div>
           </div>
 
@@ -77,7 +82,7 @@
             <div class="modal-body">
               <div class="modal-body">
                 <div class="form-group">
-                  <label class="col-sm-5 col-form-label">Name of User</label>
+                  <label class="col-sm-5 col-form-label">Name of Property</label>
   
                   <input
                     v-model="form.name"

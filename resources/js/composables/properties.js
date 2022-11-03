@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import axios from 'axios';
-// import { useRoute } from 'vue-router';
+import { useRoute } from 'vue-router';
 
 export default function useProperties(){
     const property = ref([])
