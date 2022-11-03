@@ -24906,7 +24906,7 @@ function useProperties() {
   var property = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var properties = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
-  var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRoute)();
+  var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
   var getProperties = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -24965,22 +24965,27 @@ function useProperties() {
               _context3.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/properties', data);
             case 4:
-              _context3.next = 9;
-              break;
+              _context3.next = 6;
+              return router.push({
+                name: 'properties.index'
+              });
             case 6:
-              _context3.prev = 6;
+              _context3.next = 11;
+              break;
+            case 8:
+              _context3.prev = 8;
               _context3.t0 = _context3["catch"](1);
               if (_context3.t0.response.status === 422) {
                 for (key in _context3.t0.response.data.errors) {
                   errors.value = _context3.t0.response.data.errors;
                 }
               }
-            case 9:
+            case 11:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[1, 6]]);
+      }, _callee3, null, [[1, 8]]);
     }));
     return function storeProperty(_x2) {
       return _ref3.apply(this, arguments);
