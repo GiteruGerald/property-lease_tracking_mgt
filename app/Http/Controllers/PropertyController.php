@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PropertyRequest;
 use App\Http\Resources\PropertyResource;
 use App\Property;
 use Illuminate\Http\Request;
@@ -26,25 +27,11 @@ class PropertyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PropertyRequest $request)
     {
-        $this->validate($request,[
-            'name'=>'required|string|max:40',
-            'type'=>'required|string',
-            'value'=>'required|numeric',
-            'location'=>'required|numeric',
-            // 'description'=>'string'
-        ]);
-        return Property::create([
-            'name'=> $request['name'],
-            'type'=> $request['type'],
-            'value'=> $request['value'],
-            'location_id'=> $request['location'],
-            'description'=> $request['description'],
-
-        ]);
-        // $property = Property::create($request->validate());
-        // return new PropertyResource($property); 
+        
+        $property = Property::create($request->validated());
+        return new PropertyResource($property); 
 
 
     }
@@ -55,9 +42,9 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Property $property)
     {
-        //
+        return new PropertyResource($property);
     }
 
     /**
@@ -67,9 +54,11 @@ class PropertyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PropertyRequest $request, Property $property)
     {
-        //
+        $property->update($request->validated());
+
+        return new PropertyResource($property);
     }
 
     /**

@@ -70,36 +70,20 @@
   </div>
 </template>
 
-<!-- <script setup>
-import useProperties from '../composables/properties';
-import { onMounted } from 'vue';
-
-const {properties, getProperies} = useProperties()
-
-</script> -->
 <script setup>
 import axios from "axios";
-import { ref, onMounted, reactive, onBeforeMount } from "vue";
+import { ref, onMounted} from "vue";
 import useProperties from '../../composables/properties'
-const locations = ref({});
+import useLocations from '../../composables/locations'
+const { properties, getProperties, destroyProperty} = useProperties()
+const {locations, getLocations} = useLocations()
 
-const { properties, getProperties} = useProperties()
-const getLocations = () => {
-  axios.get("/api/locations").then((response) => {
-    locations.value = response.data;
-  });
-};
-
-const deleteProperty = (id) => {
+const deleteProperty = async (id) => {
   if (!window.confirm("You sure?")) {
     return;
-  } else {
-    try {
-      axios.delete(`/api/properties/${id}`);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
+  } 
+  await destroyProperty(id);
+  await getProperties();
 };
 
 onMounted(() => {

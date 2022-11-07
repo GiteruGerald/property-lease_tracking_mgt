@@ -69,7 +69,7 @@
                     <label class="col-sm-5 col-form-label">Description</label>
                     <textarea
                       class="form-control"
-                      v-model="property.desc"
+                      v-model="property.description"
                       id="exampleFormControlTextarea1"
                       rows="3"
                     ></textarea>
@@ -100,22 +100,15 @@
 import useProperties from "../../composables/properties";
 import { reactive, onMounted } from "vue";
 
-const form = reactive({
-  name: "",
-  type: "",
-  value: "",
-  location: "",
-  description: "",
-});
-
 
 const { errors, property, updateProperty, getProperty } = useProperties();
 const props = defineProps({
   id: {
     required: true,
+    type: String
   },
 });
-
+console.log(props)
 onMounted(() => getProperty(props.id));
 
 const saveProperty = async () => {

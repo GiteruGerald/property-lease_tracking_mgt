@@ -17,6 +17,7 @@ export default function useProperties(){
     const getProperty = async (id)=>{
         let response = await axios.get(`/api/properties/${id}`)
         property.value = response.data.data
+        console.log(id);
     }
 
     const storeProperty = async (data)=>{
@@ -37,7 +38,7 @@ export default function useProperties(){
         errors.value = ''
         
         try {
-            await axios.patch(`/api/properties/${id}`, property.value)
+            await axios.patch(`/api/properties/${id}`, property.value)  
             await router.push({name:'properties.index'})
 
         } catch (e) {
@@ -49,6 +50,10 @@ export default function useProperties(){
         }
     }
 
+    const destroyProperty = async (id) => {
+        await axios.delete(`/api/properties/${id}`);
+    }
+
     return {
         errors,
         property,
@@ -56,6 +61,7 @@ export default function useProperties(){
         getProperty,
         getProperties,
         storeProperty,
-        updateProperty
+        updateProperty,
+        destroyProperty
     }
 }
