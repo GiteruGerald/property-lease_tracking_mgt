@@ -38,14 +38,16 @@
                         >Property Type</label
                       >
                       <select class="form-control" v-model="property.type">
-                        <option value="0">Select Location</option>
+                        <option value="" disabled>Select Property Type</option>
                         <option value="Residential">Residential</option>
                         <option value="Commercial">Commercial</option>
                         <option value="Industrial">Industrial</option>
                       </select>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-5 col-form-label">Price/Value</label>
+                      <label class="col-sm-5 col-form-label"
+                        >Price/Value (KES)</label
+                      >
 
                       <input
                         v-model="property.value"
@@ -58,12 +60,12 @@
                     <div class="form-group">
                       <label>Location :</label>
                       <input
-                      v-model="property.location"
-                      type="text"
-                      name="location"
-                      placeholder="Enter Location"
-                      class="form-control"
-                    />
+                        v-model="property.location"
+                        type="text"
+                        name="location"
+                        placeholder="Enter Location"
+                        class="form-control"
+                      />
                     </div>
                   </div>
                   <div class="form-group">
@@ -101,15 +103,14 @@
 import useProperties from "../../composables/properties";
 import { reactive, onMounted } from "vue";
 
-
 const { errors, property, updateProperty, getProperty } = useProperties();
 const props = defineProps({
   id: {
     required: true,
-    type: String
+    type: String,
   },
 });
-console.log(props)
+console.log(props);
 onMounted(() => getProperty(props.id));
 
 const saveProperty = async () => {

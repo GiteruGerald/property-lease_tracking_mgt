@@ -33,14 +33,14 @@
                         >Property Type</label
                       >
                       <select class="form-control" v-model="form.type">
-                        <option value="0">Select Location</option>
+                        <option value="" disabled>Select Property Type</option>
                         <option value="Residential">Residential</option>
                         <option value="Commercial">Commercial</option>
                         <option value="Industrial">Industrial</option>
                       </select>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-5 col-form-label">Price/Value</label>
+                      <label class="col-sm-5 col-form-label">Price/Value (KES)</label>
 
                       <input
                         v-model="form.value"

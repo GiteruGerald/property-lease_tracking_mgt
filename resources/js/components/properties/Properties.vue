@@ -44,12 +44,17 @@
                   <td>{{ property.type }}</td>
                   <td>{{ property.value }}</td>
                   <td>{{ property.location }}</td>
-                  <!-- <td></td> -->
                   <td>
                     
-                    <a href="#" @click="deleteProperty(property.id)">
-                      <i class="fa fa-eye blue"></i>
-                    </a>
+                    <router-link
+                      :to="{
+                        name: 'properties.show',
+                        params: { id: property.id },
+                      }"
+                      class="mr-2 ..."
+                    >
+                    <i class="fa fa-eye blue"></i>
+                    </router-link>
                     
                     /
                     <router-link
