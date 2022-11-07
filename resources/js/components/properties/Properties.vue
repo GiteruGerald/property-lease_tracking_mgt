@@ -32,7 +32,8 @@
                   <th style="width: 10px">#</th>
                   <th>Name</th>
                   <th>Type</th>
-                  <th>Price</th>
+                  <th>Price/Value</th>
+                  <th>Location</th>
                   <th>Options</th>
                 </tr>
               </thead>
@@ -42,9 +43,15 @@
                   <td>{{ property.name }}</td>
                   <td>{{ property.type }}</td>
                   <td>{{ property.value }}</td>
-                  <!-- <td>{{ property.location }}</td> -->
+                  <td>{{ property.location }}</td>
                   <!-- <td></td> -->
                   <td>
+                    
+                    <a href="#" @click="deleteProperty(property.id)">
+                      <i class="fa fa-eye blue"></i>
+                    </a>
+                    
+                    /
                     <router-link
                       :to="{
                         name: 'properties.edit',
@@ -52,13 +59,14 @@
                       }"
                       class="mr-2 ..."
                     >
-                      <i class="fa fa-edit"></i>
+                      <i class="fa fa-edit orange"></i>
                     </router-link>
 
                     /
                     <a href="#" @click="deleteProperty(property.id)">
                       <i class="fa fa-trash red"></i>
                     </a>
+                    
                   </td>
                 </tr>
               </tbody>
