@@ -19,8 +19,8 @@ class CreatePropertiesTable extends Migration
             $table->string('name');
             $table->string('type');
 
-            $table->unsignedBigInteger('location_id')->default(0);
-            $table->foreign('location_id')->references('id')->on('locations')->nullable();
+            $table->string('location');
+            // $table->foreign('location_id')->references('id')->on('locations')->nullable();
             
             $table->unsignedBigInteger('value')->default(0);
             $table->string('featured_image')->default('https://picsum.photos/1200/800');

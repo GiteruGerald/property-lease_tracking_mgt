@@ -56,13 +56,14 @@
                       />
                     </div>
                     <div class="form-group">
-                      <label>Select Location:</label>
-                      <select class="form-control" v-model="property.location">
-                        <option value="0">Select Location</option>
-                        <option v-for="data in locations" :value="data.id">
-                          {{ data.name }}
-                        </option>
-                      </select>
+                      <label>Location :</label>
+                      <input
+                      v-model="property.location"
+                      type="text"
+                      name="location"
+                      placeholder="Enter Location"
+                      class="form-control"
+                    />
                     </div>
                   </div>
                   <div class="form-group">
