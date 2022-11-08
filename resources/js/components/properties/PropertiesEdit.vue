@@ -18,75 +18,76 @@
 
           <div class="card-body">
             <form class="space-y-6" @submit.prevent="saveProperty">
-              <div class="modal-body">
-                <div class="modal-body">
+              <div class="body">
+                <div class="form-group">
+                  <label class="col-sm-5 col-form-label"
+                    >Name of Property</label
+                  >
+
+                  <input
+                    v-model="property.name"
+                    type="text"
+                    name="name"
+                    placeholder="Enter User name"
+                    class="form-control"
+                  />
+                  </div>
                   <div class="form-group">
                     <label class="col-sm-5 col-form-label"
-                      >Name of Property</label
+                      >Property Type</label
+                    >
+                    <select class="form-control" v-model="property.type">
+                      <option value="" disabled>Select Property Type</option>
+                      <option value="Residential">Residential</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Industrial">Industrial</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-5 col-form-label"
+                      >Price/Value (KES)</label
                     >
 
                     <input
-                      v-model="property.name"
-                      type="text"
-                      name="name"
-                      placeholder="Enter User name"
+                      v-model="property.value"
+                      type="number"
+                      name="value"
+                      placeholder="Enter Value of Property"
                       class="form-control"
                     />
-
-                    <div class="form-group">
-                      <label class="col-sm-5 col-form-label"
-                        >Property Type</label
-                      >
-                      <select class="form-control" v-model="property.type">
-                        <option value="" disabled>Select Property Type</option>
-                        <option value="Residential">Residential</option>
-                        <option value="Commercial">Commercial</option>
-                        <option value="Industrial">Industrial</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-5 col-form-label"
-                        >Price/Value (KES)</label
-                      >
-
-                      <input
-                        v-model="property.value"
-                        type="number"
-                        name="value"
-                        placeholder="Enter Value of Property"
-                        class="form-control"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label>Location :</label>
-                      <input
-                        v-model="property.location"
-                        type="text"
-                        name="location"
-                        placeholder="Enter Location"
-                        class="form-control"
-                      />
-                    </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-5 col-form-label">Description</label>
-                    <textarea
+                    <label>Location :</label>
+                    <input
+                      v-model="property.location"
+                      type="text"
+                      name="location"
+                      placeholder="Enter Location"
                       class="form-control"
-                      v-model="property.description"
-                      id="exampleFormControlTextarea1"
-                      rows="3"
-                    ></textarea>
+                    />
                   </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 col-form-label"
+                        >Profile Photo</label
+                      >
+                        <input
+                          @change="uploadPic"
+                          type="file"
+                          class="form-control"
+                          name="featured_image"
+                        />
+                  </div>
+                <div class="form-group">
+                  <label class="col-sm-5 col-form-label">Description</label>
+                  <textarea
+                    class="form-control"
+                    v-model="property.description"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                  ></textarea>
                 </div>
               </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
+              <div class="footer">
                 <button type="submit" class="btn btn-primary">
                   Submit Changes
                 </button>
@@ -110,9 +111,11 @@ const props = defineProps({
     type: String,
   },
 });
-console.log(props);
 onMounted(() => getProperty(props.id));
 
+const uploadPic = (e)=>{
+  console.log("uploading")
+}
 const saveProperty = async () => {
   await updateProperty(props.id);
 };

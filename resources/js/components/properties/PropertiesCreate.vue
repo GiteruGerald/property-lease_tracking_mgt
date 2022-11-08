@@ -7,7 +7,12 @@
             <h3 class="card-title">Add New Property</h3>
 
             <div class="card-tools">
-                <button class="btn btn-outline-success" @click="()=>$router.push({name:'properties.index'})">Back</button>
+              <button
+                class="btn btn-outline-success"
+                @click="() => $router.push({ name: 'properties.index' })"
+              >
+                Back
+              </button>
             </div>
           </div>
 
@@ -27,39 +32,51 @@
                       placeholder="Enter Name of Property"
                       class="form-control"
                     />
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-5 col-form-label">Property Type</label>
+                    <select class="form-control" v-model="form.type">
+                      <option value="" disabled>Select Property Type</option>
+                      <option value="Residential">Residential</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Industrial">Industrial</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-5 col-form-label"
+                      >Price/Value (KES)</label
+                    >
 
-                    <div class="form-group">
-                      <label class="col-sm-5 col-form-label"
-                        >Property Type</label
-                      >
-                      <select class="form-control" v-model="form.type">
-                        <option value="" disabled>Select Property Type</option>
-                        <option value="Residential">Residential</option>
-                        <option value="Commercial">Commercial</option>
-                        <option value="Industrial">Industrial</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-sm-5 col-form-label">Price/Value (KES)</label>
-
-                      <input
-                        v-model="form.value"
-                        type="number"
-                        name="value"
-                        placeholder="Enter Value of Property"
-                        class="form-control"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <label>Location :</label>
-                      <input
+                    <input
+                      v-model="form.value"
+                      type="number"
+                      name="value"
+                      placeholder="Enter Value of Property"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Location :</label>
+                    <input
                       v-model="form.location"
                       type="text"
                       name="location"
                       placeholder="Enter Location"
                       class="form-control"
                     />
-                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 col-form-label"
+                        >Profile Photo</label
+                      >
+                      <div class="col-sm-10">
+                        <input
+                          @change="uploadPic"
+                          type="file"
+                          class="form-control"
+                          name="featured_image"
+                        />
+                      </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-5 col-form-label">Description</label>

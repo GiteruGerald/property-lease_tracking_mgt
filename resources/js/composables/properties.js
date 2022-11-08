@@ -17,7 +17,6 @@ export default function useProperties(){
     const getProperty = async (id)=>{
         let response = await axios.get(`/api/properties/${id}`)
         property.value = response.data.data
-        console.log(id);
     }
 
     const storeProperty = async (data)=>{
@@ -39,7 +38,8 @@ export default function useProperties(){
         
         try {
             await axios.patch(`/api/properties/${id}`, property.value)  
-            await router.push({name:'properties.index'})
+            // await router.push({name:'properties.index'})
+            await router.go(-1)
 
         } catch (e) {
             if(e.response.status === 422){
