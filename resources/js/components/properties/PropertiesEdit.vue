@@ -114,7 +114,16 @@ const props = defineProps({
 onMounted(() => getProperty(props.id));
 
 const uploadPic = (e)=>{
-  console.log("uploading")
+  let file = e.target.files[0];
+  console.log(file);
+  let reader = new FileReader();
+// Optional
+  reader.onloadend = (file) => {
+    console.log('RESULT', reader.result)
+  }
+
+  reader.readAsDataURL(file); //needed
+  
 }
 const saveProperty = async () => {
   await updateProperty(props.id);
