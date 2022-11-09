@@ -32,17 +32,22 @@ class PropertyController extends Controller
     public function store(PropertyRequest $request)
     {
         $property = Property::create($request->validated());
-        
+
         if ($request->image) {
             $name = time() . '.' . explode('/', explode(
                 ':',
                 substr($request->image, 0, strpos($request->image, ';'))
-                )[1])[1];
-                
-                \Image::make($request->image)->save(public_path('img/property/').$name);
-                $property->update(['image' => $name]);
+            )[1])[1];
+
+            \Image::make($request->image)->save(public_path('img/property/') . $name);
+            $property->update(['image' => $name]);
+
+            $currentPhoto = public_path('img/property/') . $name;
+            if (file_exists($currentPhoto)) {
+                @unlink($currentPhoto);
             }
-            return new PropertyResource($property);
+        }
+        return new PropertyResource($property);
     }
 
     /**

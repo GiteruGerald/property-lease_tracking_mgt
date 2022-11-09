@@ -69,9 +69,10 @@
             <div class="card-body box-profile">
               <div class="text-center">
                 <img
-                  class="profile-user-img img-fluid img-circle"
-                  src="{{ asset('/img/property/1667968078.png') }}"
-                  alt="User profile picture"
+                  class="profile-user-img img-fluid"
+                  :src="'/img/property/'+ property.image"
+                  style="width:360px;height: 150px;"
+                  :alt="property.image"
                 />
               </div>
               <h3 class="profile-username text-center">{{ property.name }}</h3>
@@ -133,5 +134,8 @@ const props = defineProps({
     type: String,
   },
 });
-onBeforeMount(() => getProperty(props.id));
+onBeforeMount(() =>
+ getProperty(props.id)
+//  console.log(props.image);
+ );
 </script>
