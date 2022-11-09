@@ -17,7 +17,7 @@ class PropertyRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+ * Get the validation rules that apply to the request.
      *
      * @return array
      */
@@ -28,7 +28,7 @@ class PropertyRequest extends FormRequest
             'type' => ['required', 'string'],
             'location' => ['required', 'string'],
             'value' => ['required', 'numeric'],
-            'featured_image' => ['string','nullable'],
+            'image' => ['string','nullable'],
             'description' => ['nullable', 'string'],
         ];
     }

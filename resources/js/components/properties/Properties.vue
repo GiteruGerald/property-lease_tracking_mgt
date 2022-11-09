@@ -101,6 +101,6 @@ const deleteProperty = async (id) => {
 
 onMounted(() => {
   getProperties();
-  getLocations();
+  // getLocations();
 });
 </script>

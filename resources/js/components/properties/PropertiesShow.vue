@@ -70,7 +70,7 @@
               <div class="text-center">
                 <img
                   class="profile-user-img img-fluid img-circle"
-                  src="{{ asset('/img/user4-128x128.jpg') }}"
+                  src="{{ asset('/img/property/1667968078.png') }}"
                   alt="User profile picture"
                 />
               </div>

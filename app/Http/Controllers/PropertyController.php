@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PropertyRequest;
 use App\Http\Resources\PropertyResource;
 use App\Property;
+use Intervention\Image\Image;
+
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
@@ -29,11 +31,18 @@ class PropertyController extends Controller
      */
     public function store(PropertyRequest $request)
     {
-        
         $property = Property::create($request->validated());
-        return new PropertyResource($property); 
-
-
+        
+        if ($request->image) {
+            $name = time() . '.' . explode('/', explode(
+                ':',
+                substr($request->image, 0, strpos($request->image, ';'))
+                )[1])[1];
+                
+                \Image::make($request->image)->save(public_path('img/property/').$name);
+                $property->update(['image' => $name]);
+            }
+            return new PropertyResource($property);
     }
 
     /**
@@ -58,6 +67,7 @@ class PropertyController extends Controller
     {
         $property->update($request->validated());
 
+
         return new PropertyResource($property);
     }
 
@@ -71,7 +81,5 @@ class PropertyController extends Controller
     {
         $property->delete();
         return  ['message' => 'Property deleted'];
-
     }
-
 }

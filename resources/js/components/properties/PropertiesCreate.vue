@@ -65,17 +65,15 @@
                   />
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 col-form-label"
-                      >Profile Photo</label
-                    >
-                    <div class="col-sm-10">
-                      <input
-                        @change="uploadPic"
-                        type="file"
-                        class="form-control"
-                        name="featured_image"
-                      />
-                    </div>
+                  <label class="col-sm-2 col-form-label">Profile Photo</label>
+                  <div class="col-sm-10">
+                    <input
+                      @change="uploadPic"
+                      type="file"
+                      class="form-control"
+                      name="image"
+                    />
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-5 col-form-label">Description</label>
@@ -114,7 +112,7 @@ const form = reactive({
   type: "",
   value: "",
   location: "",
-  featured_image:'',
+  image:'',
   description: "",
 });
 
@@ -127,13 +125,20 @@ const saveProperty = async () => {
 const uploadPic = (e)=>{
   let file = e.target.files[0];
   console.log(file);
+
   let reader = new FileReader();
-// Optional
-  reader.onloadend = (file) => {
-     form.featured_image = reader.result
+  let limit = 1024 * 1024* 2;
+  if(file['size'] < limit ){
+
+    reader.onloadend = (file) => {
+       form.image = reader.result
+    }
+  
+    reader.readAsDataURL(file); //needed
+  }else{
+      errors.value = "You are uploading a large file"
   }
 
-  reader.readAsDataURL(file); //needed
   
 }
 </script>

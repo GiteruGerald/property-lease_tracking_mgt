@@ -24043,8 +24043,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
       getProperties();
-      getLocations();
+      // getLocations();
     });
+
     var __returned__ = {
       properties: properties,
       getProperties: getProperties,
@@ -24100,7 +24101,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       type: "",
       value: "",
       location: "",
-      featured_image: '',
+      image: '',
       description: ""
     });
     var _useProperties = (0,_composables_properties__WEBPACK_IMPORTED_MODULE_0__["default"])(),
@@ -24129,13 +24130,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var file = e.target.files[0];
       console.log(file);
       var reader = new FileReader();
-      // Optional
-      reader.onloadend = function (file) {
-        form.featured_image = reader.result;
-      };
-      reader.readAsDataURL(file); //needed
+      var limit = 1024 * 1024 * 2;
+      if (file['size'] < limit) {
+        reader.onloadend = function (file) {
+          form.image = reader.result;
+        };
+        reader.readAsDataURL(file); //needed
+      } else {
+        errors.value = "You are uploading a large file";
+      }
     };
-
     var __returned__ = {
       form: form,
       errors: errors,
@@ -24711,7 +24715,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onChange: $setup.uploadPic,
     type: "file",
     "class": "form-control",
-    name: "featured_image"
+    name: "image"
   }, null, 32 /* HYDRATE_EVENTS */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "form-control",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
@@ -24962,7 +24966,7 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "text-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "profile-user-img img-fluid img-circle",
-  src: "{{ asset('/img/user4-128x128.jpg') }}",
+  src: "{{ asset('/img/property/1667968078.png') }}",
   alt: "User profile picture"
 })], -1 /* HOISTED */);
 var _hoisted_25 = {
