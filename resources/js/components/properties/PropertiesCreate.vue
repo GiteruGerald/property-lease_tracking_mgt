@@ -71,6 +71,7 @@
                       @change="uploadPic"
                       type="file"
                       class="form-control"
+                      style="resize:vertical"
                       name="image"
                     />
                   </div>
@@ -128,7 +129,7 @@ const uploadPic = (e)=>{
 
   let reader = new FileReader();
   let limit = 1024 * 1024* 2;
-  if(file['size'] < limit ){
+  if(file['size'] < limit ){ //TODO: Implement file size validate
 
     reader.onloadend = (file) => {
        form.image = reader.result

@@ -30,7 +30,7 @@
                         </p>
                         <p>
                           <a href="#" class="link-black text-sm btn btn-success"
-                            ><i class="fas fa-link mr-1"></i> Lease Property
+                            ><i class="fas fa-link mr-1"></i> Draft your first lease 
                             </a
                           >
                         </p>

@@ -42,10 +42,10 @@ class PropertyController extends Controller
             \Image::make($request->image)->save(public_path('img/property/') . $name);
             $property->update(['image' => $name]);
 
-            $currentPhoto = public_path('img/property/') . $name;
-            if (file_exists($currentPhoto)) {
-                @unlink($currentPhoto);
-            }
+            // $currentPhoto = public_path('img/property/') . $name;
+            // if (file_exists($currentPhoto)) {
+            //     @unlink($currentPhoto);
+            // }
         }
         return new PropertyResource($property);
     }

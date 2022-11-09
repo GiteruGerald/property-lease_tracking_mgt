@@ -24132,6 +24132,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var reader = new FileReader();
       var limit = 1024 * 1024 * 2;
       if (file['size'] < limit) {
+        //TODO: Implement file size validate
+
         reader.onloadend = function (file) {
           form.image = reader.result;
         };
@@ -24718,6 +24720,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onChange: $setup.uploadPic,
     type: "file",
     "class": "form-control",
+    style: {
+      "resize": "vertical"
+    },
     name: "image"
   }, null, 32 /* HYDRATE_EVENTS */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "form-control",
@@ -24954,7 +24959,7 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "link-black text-sm btn btn-success"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fas fa-link mr-1"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Lease Property ")])], -1 /* HOISTED */);
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Draft your first lease ")])], -1 /* HOISTED */);
 var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-12 col-md-12 col-lg-4 order-1 order-md-2\"><h3 class=\"text-primary\"><i class=\"fas fa-paint-brush\"></i> AdminLTE v3 </h3><p class=\"text-muted\"> Raw denim you probably haven&#39;t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr. </p><br><div class=\"text-muted\"><p class=\"text-sm\"> Client Company <b class=\"d-block\">Deveint Inc</b></p><p class=\"text-sm\"> Project Leader <b class=\"d-block\">Tony Chicken</b></p></div></div>", 1);
 var _hoisted_21 = {
   "class": "col-md-3"
