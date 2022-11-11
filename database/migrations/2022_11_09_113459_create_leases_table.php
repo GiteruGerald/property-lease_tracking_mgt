@@ -21,7 +21,8 @@ class CreateLeasesTable extends Migration
             $table->string('lessee_name');
             $table->string('lessee_email');
             $table->string('lessee_phone');
-            $table->integer('duration');//Lease Term in years
+            $table->date('start_date');//Lease Term in years
+            $table->date('end_date');//Lease Term in years
             $table->integer('rent');
             $table->integer('deposit');
             $table->string('type'); //Gross Lease/Net Lease/ Modified Gross Lease/Percentage Lease

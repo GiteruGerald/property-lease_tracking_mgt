@@ -9,7 +9,7 @@ class Property extends Model
     //
     protected $guarded= [];
 
-    public function location(){
-        return $this->belongsTo('App\Location');
+    public function leases(){
+        return $this->hasOne(Lease::class);
     }
 }

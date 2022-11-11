@@ -111,15 +111,13 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item menu-open">
+                        <li class="nav-item">
                             <router-link to="/locations" class="nav-link">
                                 <i class="nav-icon fas fa-location-dot green"></i>
                               <p>
                                   Locations
-                                  <i class="right fas fa-angle-left"></i>
                               </router-link>
-                          </a>
-                          <ul class="nav nav-treeview">
+                          {{-- <ul class="nav ">
                               <li class="nav-item">
                                   <router-link to="/locations" class="nav-link">
                                       <i class="fa-solid fa-circle nav-icon"></i>
@@ -127,24 +125,16 @@
                                   </router-link>
                               </li>
                               
-                          </ul>
+                          </ul> --}}
                       </li>
-                        <li class="nav-item">
-                            <router-link to="/users" class="nav-link">
-                                <i class="nav-icon fas fa-users indigo"></i>
-                                <p>
-                                    Users
-                                </p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <router-link to="/profile" class="nav-link">
                                 <i class="nav-icon fas fa-user purple"></i>
                                 <p>
                                     Profile
                                 </p>
                             </router-link>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
 
