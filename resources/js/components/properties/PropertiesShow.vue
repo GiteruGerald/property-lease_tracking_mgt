@@ -157,24 +157,25 @@
                   <div class="row">
                     <div class="col-6">
                       <label class="col-sm-8 col-form-label"
-                        >Name of Lease</label
+                        >Name of Lessee*</label
                       >
 
                       <input
+                      v-model="form.fname" required
                         type="text"
-                        name="name"
+                        name="fname"
                         placeholder="First Name"
                         class="form-control"
                       />
                     </div>
                     <div class="col-6">
                       <label class="col-sm-8 col-form-label"
-                        >Name of Lease</label
+                        >Last Name*</label
                       >
-
                       <input
+                      v-model="form.lname" required
                         type="text"
-                        name="name"
+                        name="lname"
                         placeholder="Last Name"
                         class="form-control"
                       />
@@ -182,21 +183,22 @@
                   </div>
                   <div class="row">
                     <div class="col-6"><label class="col-sm-8 col-form-label"
-                        >Email Address</label
+                        >Email Address*</label
                       >
                       <input
-                        type="email"
+                      v-model="form.email" required
+                      type="email"
                         name="email"
                         placeholder="someone@example.com"
                         class="form-control"
                       /></div>
                     <div class="col-6"><label class="col-sm-8 col-form-label"
-                        >Phone Contact</label
+                        >Phone Contact*</label
                       >
-
                       <input
-                        type="text"
-                        name="phone_no"
+                      v-model="form.phone" required
+                      type="text"
+                        name="phone"
                         placeholder="+254 7..."
                         class="form-control"
                       /></div>
@@ -209,20 +211,22 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-6">
-                      <label>Start Date :</label>
+                      <label>Start Date* :</label>
                     <input
-                      type="text"
-                      name="start_date"
+                    v-model="form.start" required
+                    type="date"
+                    name="start_date"
                       placeholder="Start date of Lease"
                       class="form-control"
-                    />
-                    
+                      />
+                      
                     </div>
-                    <div class="col-6">
-                      <label>End Date :</label>
-                    <input
-                      type="text"
-                      name="end_date"
+                    <div class="col-3">
+                      <label>Duration(In Years)* :</label>
+                      <input
+                      v-model="form.duration" required
+                      type="number"
+                      name="duration"
                       placeholder="End date of Lease"
                       class="form-control"
                     />
@@ -230,12 +234,13 @@
                   </div>
                   <div class="row">
                     <div class="col-5">
-                      <label class="col-8 col-form-label">Lease Type</label>
-                      <select class="form-control">
+                      <label class="col-8 col-form-label">Lease Type *</label>
+                      <select class="form-control" v-model="form.type" required>
                         <option value="" disabled>Select Lease Type</option>
-                        <option value="Residential">Residential</option>
-                        <option value="Commercial">Commercial</option>
-                        <option value="Industrial">Industrial</option>
+                        <option value="Full-Service Lease/Gross Lease">Full-Service Lease/Gross Lease</option>
+                        <option value="Net Lease">Net Lease</option>
+                        <option value="Absolute Lease">Absolute Lease</option>
+                        <option value="Percentage Lease">Percentage Lease</option>
                       </select>
                     </div>
                   </div>
@@ -246,6 +251,7 @@
 
                       <label class="col-sm-5 col-form-label">Rent(/Month)</label>
                       <input
+                    v-model="form.rent" required
                         type="number"
                         name="value"
                         placeholder="Enter rent charges"
@@ -257,6 +263,7 @@
                         >Security Deposit</label
                       >
                       <input
+                      v-model="form.deposit" required
                         type="number"
                         name="value"
                         placeholder="Enter amount of security deposit"
@@ -287,7 +294,7 @@
   
   <script setup>
 import useProperties from "../../composables/properties";
-import { onBeforeMount } from "vue";
+import { onBeforeMount, reactive } from "vue";
 
 const { errors, property, getProperty } = useProperties();
 const props = defineProps({
@@ -296,6 +303,19 @@ const props = defineProps({
     type: String,
   },
 });
+
+const form = reactive({
+    fname:'',
+    lname:'',
+    email:'',
+    phone:'',
+    start:'',
+    duration:'',
+    rent :'',
+    deposit:'',
+    type:'',
+});
+
 const newModal = () => {
   $("#addNewModal").modal("show");
 };

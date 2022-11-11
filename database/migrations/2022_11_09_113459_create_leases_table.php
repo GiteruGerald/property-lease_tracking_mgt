@@ -18,11 +18,12 @@ class CreateLeasesTable extends Migration
             $table->unsignedBigInteger('property_id');
             $table->foreign('property_id')->references('id')->on('properties');
 
-            $table->string('lessee_name');
-            $table->string('lessee_email');
-            $table->string('lessee_phone');
-            $table->date('start_date');//Lease Term in years
-            $table->date('end_date');//Lease Term in years
+            $table->string('f_name');
+            $table->string('l_name');
+            $table->string('email');
+            $table->string('phone_no');
+            $table->date('start');//Lease Term in years
+            $table->integer('duration');//Lease Term in years
             $table->integer('rent');
             $table->integer('deposit');
             $table->string('type'); //Gross Lease/Net Lease/ Modified Gross Lease/Percentage Lease

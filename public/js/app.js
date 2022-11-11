@@ -24316,6 +24316,17 @@ __webpack_require__.r(__webpack_exports__);
       errors = _useProperties.errors,
       property = _useProperties.property,
       getProperty = _useProperties.getProperty;
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
+      fname: '',
+      lname: '',
+      email: '',
+      phone: '',
+      start: '',
+      duration: '',
+      rent: '',
+      deposit: '',
+      type: ''
+    });
     var newModal = function newModal() {
       $("#addNewModal").modal("show");
     };
@@ -24330,9 +24341,11 @@ __webpack_require__.r(__webpack_exports__);
       property: property,
       getProperty: getProperty,
       props: props,
+      form: form,
       newModal: newModal,
       useProperties: _composables_properties__WEBPACK_IMPORTED_MODULE_0__["default"],
-      onBeforeMount: vue__WEBPACK_IMPORTED_MODULE_1__.onBeforeMount
+      onBeforeMount: vue__WEBPACK_IMPORTED_MODULE_1__.onBeforeMount,
+      reactive: vue__WEBPACK_IMPORTED_MODULE_1__.reactive
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -25232,8 +25245,99 @@ var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "aria-hidden": "true"
 }, "×")], -1 /* HOISTED */);
-var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-body\"><fieldset><legend>Lessee Details</legend><div class=\"form-group\"><div class=\"row\"><div class=\"col-6\"><label class=\"col-sm-8 col-form-label\">Name of Lease</label><input type=\"text\" name=\"name\" placeholder=\"First Name\" class=\"form-control\"></div><div class=\"col-6\"><label class=\"col-sm-8 col-form-label\">Name of Lease</label><input type=\"text\" name=\"name\" placeholder=\"Last Name\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-6\"><label class=\"col-sm-8 col-form-label\">Email Address</label><input type=\"email\" name=\"email\" placeholder=\"someone@example.com\" class=\"form-control\"></div><div class=\"col-6\"><label class=\"col-sm-8 col-form-label\">Phone Contact</label><input type=\"text\" name=\"phone_no\" placeholder=\"+254 7...\" class=\"form-control\"></div></div></div></fieldset><hr><fieldset><legend>Lease Terms</legend><div class=\"form-group\"><div class=\"row\"><div class=\"col-6\"><label>Start Date :</label><input type=\"text\" name=\"start_date\" placeholder=\"Start date of Lease\" class=\"form-control\"></div><div class=\"col-6\"><label>End Date :</label><input type=\"text\" name=\"end_date\" placeholder=\"End date of Lease\" class=\"form-control\"></div></div><div class=\"row\"><div class=\"col-5\"><label class=\"col-8 col-form-label\">Lease Type</label><select class=\"form-control\"><option value=\"\" disabled>Select Lease Type</option><option value=\"Residential\">Residential</option><option value=\"Commercial\">Commercial</option><option value=\"Industrial\">Industrial</option></select></div></div></div><div class=\"form-group\"><div class=\"row\"><div class=\"col-6\"><label class=\"col-sm-5 col-form-label\">Rent(/Month)</label><input type=\"number\" name=\"value\" placeholder=\"Enter rent charges\" class=\"form-control\"></div><div class=\"col-6\"><label class=\"col-sm-8 col-form-label\">Security Deposit</label><input type=\"number\" name=\"value\" placeholder=\"Enter amount of security deposit\" class=\"form-control\"></div></div></div></fieldset></div><div class=\"modal-footer\"><button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\"> Close </button><button type=\"submit\" class=\"btn btn-success\">Submit</button></div>", 2);
-var _hoisted_51 = [_hoisted_49];
+var _hoisted_49 = {
+  "class": "modal-body"
+};
+var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Lessee Details", -1 /* HOISTED */);
+var _hoisted_51 = {
+  "class": "form-group"
+};
+var _hoisted_52 = {
+  "class": "row"
+};
+var _hoisted_53 = {
+  "class": "col-6"
+};
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "col-sm-8 col-form-label"
+}, "Name of Lessee*", -1 /* HOISTED */);
+var _hoisted_55 = {
+  "class": "col-6"
+};
+var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "col-sm-8 col-form-label"
+}, "Last Name*", -1 /* HOISTED */);
+var _hoisted_57 = {
+  "class": "row"
+};
+var _hoisted_58 = {
+  "class": "col-6"
+};
+var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "col-sm-8 col-form-label"
+}, "Email Address*", -1 /* HOISTED */);
+var _hoisted_60 = {
+  "class": "col-6"
+};
+var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "col-sm-8 col-form-label"
+}, "Phone Contact*", -1 /* HOISTED */);
+var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("legend", null, "Lease Terms", -1 /* HOISTED */);
+var _hoisted_64 = {
+  "class": "form-group"
+};
+var _hoisted_65 = {
+  "class": "row"
+};
+var _hoisted_66 = {
+  "class": "col-6"
+};
+var _hoisted_67 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Start Date* :", -1 /* HOISTED */);
+var _hoisted_68 = {
+  "class": "col-3"
+};
+var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Duration(In Years)* :", -1 /* HOISTED */);
+var _hoisted_70 = {
+  "class": "row"
+};
+var _hoisted_71 = {
+  "class": "col-5"
+};
+var _hoisted_72 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "col-8 col-form-label"
+}, "Lease Type *", -1 /* HOISTED */);
+var _hoisted_73 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"\" disabled>Select Lease Type</option><option value=\"Full-Service Lease/Gross Lease\">Full-Service Lease/Gross Lease</option><option value=\"Net Lease\">Net Lease</option><option value=\"Absolute Lease\">Absolute Lease</option><option value=\"Percentage Lease\">Percentage Lease</option>", 5);
+var _hoisted_78 = [_hoisted_73];
+var _hoisted_79 = {
+  "class": "form-group"
+};
+var _hoisted_80 = {
+  "class": "row"
+};
+var _hoisted_81 = {
+  "class": "col-6"
+};
+var _hoisted_82 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "col-sm-5 col-form-label"
+}, "Rent(/Month)", -1 /* HOISTED */);
+var _hoisted_83 = {
+  "class": "col-6"
+};
+var _hoisted_84 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "col-sm-8 col-form-label"
+}, "Security Deposit", -1 /* HOISTED */);
+var _hoisted_85 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "modal-footer"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "button",
+  "class": "btn btn-secondary",
+  "data-dismiss": "modal"
+}, " Close "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "submit",
+  "class": "btn btn-success"
+}, "Submit")], -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.property.name), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.property.name) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.property.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -25268,8 +25372,86 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["to"])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" !-- Add New Modal --> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_47, "Apply Lease for " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.property.name), 1 /* TEXT */), _hoisted_48]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
-  }, _hoisted_51, 32 /* HYDRATE_EVENTS */)])])])]);
+    onSubmit: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", null, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $setup.form.fname = $event;
+    }),
+    required: "",
+    type: "text",
+    name: "fname",
+    placeholder: "First Name",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.fname]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $setup.form.lname = $event;
+    }),
+    required: "",
+    type: "text",
+    name: "lname",
+    placeholder: "Last Name",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.lname]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $setup.form.email = $event;
+    }),
+    required: "",
+    type: "email",
+    name: "email",
+    placeholder: "someone@example.com",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.email]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [_hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $setup.form.phone = $event;
+    }),
+    required: "",
+    type: "text",
+    name: "phone",
+    placeholder: "+254 7...",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.phone]])])])])]), _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", null, [_hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_66, [_hoisted_67, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+      return $setup.form.start = $event;
+    }),
+    required: "",
+    type: "date",
+    name: "start_date",
+    placeholder: "Start date of Lease",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.start]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [_hoisted_69, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+      return $setup.form.duration = $event;
+    }),
+    required: "",
+    type: "number",
+    name: "duration",
+    placeholder: "End date of Lease",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.duration]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [_hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-control",
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      return $setup.form.type = $event;
+    }),
+    required: ""
+  }, _hoisted_78, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.type]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_79, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_80, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_81, [_hoisted_82, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+      return $setup.form.rent = $event;
+    }),
+    required: "",
+    type: "number",
+    name: "value",
+    placeholder: "Enter rent charges",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.rent]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_83, [_hoisted_84, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+      return $setup.form.deposit = $event;
+    }),
+    required: "",
+    type: "number",
+    name: "value",
+    placeholder: "Enter amount of security deposit",
+    "class": "form-control"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.deposit]])])])])])]), _hoisted_85], 32 /* HYDRATE_EVENTS */)])])])]);
 }
 
 /***/ }),
