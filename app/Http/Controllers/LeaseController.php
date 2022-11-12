@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LeaseRequest;
+use App\Http\Resources\LeaseResource;
 use App\Lease;
+use App\Property;
 use Illuminate\Http\Request;
 
 class LeaseController extends Controller
@@ -17,25 +20,11 @@ class LeaseController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(LeaseRequest $request)
     {
-        //
-    }
+        $lease = Lease::create($request->validated());
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return new LeaseResource($lease);
     }
 
     /**
@@ -50,24 +39,13 @@ class LeaseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Lease  $lease
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Lease $lease)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Lease  $lease
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lease $lease)
+    public function update(LeaseRequest $request, Lease $lease)
     {
         //
     }
@@ -82,4 +60,15 @@ class LeaseController extends Controller
     {
         //
     }
+
+    public function getlease($id){
+        $lease = Lease::with('property')->where('property_id',$id)->get();
+
+        // $property = Property::find($id);
+        // $lease = Lease::where('property_id', $property->id)->get();
+
+        return response()->json([
+            'lease'=> $lease
+        ]);
+    } 
 }

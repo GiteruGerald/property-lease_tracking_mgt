@@ -18,10 +18,10 @@ class CreateLeasesTable extends Migration
             $table->unsignedBigInteger('property_id');
             $table->foreign('property_id')->references('id')->on('properties');
 
-            $table->string('f_name');
-            $table->string('l_name');
+            $table->string('fname');
+            $table->string('lname');
             $table->string('email');
-            $table->string('phone_no');
+            $table->string('phone');
             $table->date('start');//Lease Term in years
             $table->integer('duration');//Lease Term in years
             $table->integer('rent');

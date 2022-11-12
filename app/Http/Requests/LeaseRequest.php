@@ -30,6 +30,7 @@ class LeaseRequest extends FormRequest
             'phone'=> ['string', 'required'],
             'start'=> ['string', 'required'],
             'duration'=> ['numeric','required'],
+            'property_id'=> ['numeric','required'],
             'rent'=> ['numeric','required'],
             'deposit'=> ['numeric','required'],
             'type'=> ['string','required'],

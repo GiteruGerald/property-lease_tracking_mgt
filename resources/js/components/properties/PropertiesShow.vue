@@ -32,6 +32,7 @@
                       <div class="post">
                         <p>
                           {{ property.description }}
+                          {{ lease.fname }}
                         </p>
                         <p>
                           <button
@@ -41,6 +42,14 @@
                             <i class="fas fa-pen mr-1"></i>
                             Draft your first lease
                           </button>
+
+                          <router-link :to="{
+                            name:'leases.show',
+                            params:{id:property.id}
+                          }">
+                            <i class="fas fa-eye mr-1"></i>
+
+                          </router-link>
                         </p>
                       </div>
                     </div>
@@ -149,7 +158,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form @submit.prevent="">
+          <form @submit.prevent="saveLease">
             <div class="modal-body">
               <fieldset>
                 <legend>Lessee Details</legend>
@@ -212,6 +221,8 @@
                   <div class="row">
                     <div class="col-6">
                       <label>Start Date* :</label>
+                      <!-- For the property id -->
+                      <input type="hidden" name="property_id" v-model="form.property_id">
                     <input
                     v-model="form.start" required
                     type="date"
@@ -294,9 +305,12 @@
   
   <script setup>
 import useProperties from "../../composables/properties";
-import { onBeforeMount, reactive } from "vue";
+import useLeases from "../../composables/leases";
+import { onBeforeMount, onMounted, reactive } from "vue";
 
 const { errors, property, getProperty } = useProperties();
+const { lease, addLeaseease } = useLeases();  
+
 const props = defineProps({
   id: {
     required: true,
@@ -305,6 +319,7 @@ const props = defineProps({
 });
 
 const form = reactive({
+  property_id:props.id,
     fname:'',
     lname:'',
     email:'',
@@ -320,8 +335,18 @@ const newModal = () => {
   $("#addNewModal").modal("show");
 };
 
+const saveLease = async()=>{
+  await addLease({...form})
+  $("#addNewModal").modal("hide");
+
+}
 onBeforeMount(
   () => getProperty(props.id)
-  //  console.log(props.image);
 );
+onMounted(()=>{
+  getLease(props.id);
+  console.log(props.id)
+
+
+})
 </script>

@@ -1,105 +1,72 @@
 <template>
   <div class="container">
-    <div class="row justify-content-center mt-5">
-      <div class="col-md-8">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Create Lease</h3>
-
-            </div>
-            <div class="card-body">
-                <form class="space-y-6" @submit.prevent="saveLease">
-              <div class="body">
-                <div class="form-group">
-                  <label class="col-sm-5 col-form-label"
-                    >Name of Lease</label
+    <section class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card card-primary card-outline">
+            
+            <div class="card-body box-profile">
+              <h3 class="profile-username text-center">{{ lease.value.fname }}</h3>
+              <p class="text-muted text-center">Property Details</p>
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Category</b> <a class="float-right">{{ lease.type }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Value / Price</b>
+                  <a class="float-right">{{ lease.lname }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Location</b>
+                  <a class="float-right">{{ lease.start }}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Lease Status</b> <a class="float-right">Active/Inactive</a>
+                </li>
+              </ul>
+              <h5 class="mt-5 text-muted">Lease files</h5>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="" class="btn-link text-secondary"
+                    ><i class="far fa-fw fa-file-word"></i>
+                    Functional-requirements.docx</a
                   >
-
-                  <input
-                    v-model="form.name"
-                    type="text"
-                    name="name"
-                    placeholder="Enter Name of Lease"
-                    class="form-control"
-                  />
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-5 col-form-label">Lease Type</label>
-                  <select class="form-control" v-model="form.type">
-                    <option value="" disabled>Select Lease Type</option>
-                    <option value="Residential">Residential</option>
-                    <option value="Commercial">Commercial</option>
-                    <option value="Industrial">Industrial</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-5 col-form-label"
-                    >Price/Value (KES)</label
+                </li>
+                <li>
+                  <a href="" class="btn-link text-secondary"
+                    ><i class="far fa-fw fa-file-pdf"></i> UAT.pdf</a
                   >
-
-                  <input
-                    v-model="form.value"
-                    type="number"
-                    name="value"
-                    placeholder="Enter Value of Lease"
-                    class="form-control"
-                  />
-                </div>
-                <div class="form-group">
-                  <label>Location :</label>
-                  <input
-                    v-model="form.location"
-                    type="text"
-                    name="location"
-                    placeholder="Enter Location"
-                    class="form-control"
-                  />
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 col-form-label">Profile Photo</label>
-                  <div class="col-sm-10">
-                    <input
-                      @change="uploadPic"
-                      type="file"
-                      class="form-control"
-                      style="resize:vertical"
-                      name="image"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-5 col-form-label">Description</label>
-                  <textarea
-                    class="form-control"
-                    v-model="form.desc"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                  ></textarea>
-                </div>
-              </div>
-              <div class="footer">
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="submit" class="btn btn-primary">Create</button>
-              </div>
-            </form>
+                </li>
+                <li>
+                  <a href="#" class="link-black text-sm"
+                    ><i class="fas fa-link mr-1"></i> Demo File 1 v2</a
+                  >
+                </li>
+              </ul>
+              
             </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { onMounted } from "vue";
+import useLeases from "../../composables/leases";
 
+const { lease, addLease, getLease } = useLeases();
 
-const form  = reactive({
+const props = defineProps({
+  id: {
+    required: true,
+    type: String,
+  },
+});
 
+onMounted(()=>{
+  getLease(props.id);
+  console.log(lease.value)
 })
 </script>
