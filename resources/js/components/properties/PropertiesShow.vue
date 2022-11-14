@@ -32,7 +32,7 @@
                       <div class="post">
                         <p>
                           {{ property.description }}
-                          {{ lease.fname }}
+                          <!-- {{ lease.fname }} -->
                         </p>
                         <p>
                           <button
@@ -44,11 +44,10 @@
                           </button>
 
                           <router-link :to="{
-                            name:'leases.show',
+                            name:'lease.show',
                             params:{id:property.id}
                           }">
                             <i class="fas fa-eye mr-1"></i>
-
                           </router-link>
                         </p>
                       </div>
@@ -337,16 +336,13 @@ const newModal = () => {
 
 const saveLease = async()=>{
   await addLease({...form})
-  $("#addNewModal").modal("hide");
+  // $("#addNewModal").modal("hide");
 
 }
 onBeforeMount(
   () => getProperty(props.id)
 );
 onMounted(()=>{
-  getLease(props.id);
   console.log(props.id)
-
-
 })
 </script>

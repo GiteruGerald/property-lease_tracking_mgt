@@ -87,4 +87,23 @@ class PropertyController extends Controller
         $property->delete();
         return  ['message' => 'Property deleted'];
     }
+
+
+      
+    public function getPropertyByType(Request $request){
+
+        $query = Property::query();
+
+        if($s = $request->input('s')){
+            // $query->whereRaw('name LIKE "%"'.$s.'"%"');
+            $query->where('type', 'like', '%' . $s.'%');
+
+                    // ->orWhereRaw('description LIKE "%"'.$s.'"%"');
+        }
+        // $properties=Property::where('type',$request->sort)->get();
+        return $query->get();
+        // return response()->json([
+        //     'property'=>$properties
+        // ]);
+    } 
 }

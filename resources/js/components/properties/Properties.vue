@@ -11,6 +11,13 @@
                 Add New
                 <i class="fas fa-user-plus fa-fw"></i>
               </button> -->
+              <select  id="" v-model="sort" @change="sortValue">
+                <option value="">--Filter By Type--></option>
+                <option value="Residential" >Residential</option>
+                <option value="Commercial" >Commercial</option>
+                <option value="Industrial" >Industrial</option>
+
+            </select>
               <div class="flex mb-4 place-content-end">
                 <div class="px-4 py-2">
                   <!-- <router-link :to="{ name: 'properties.create' }" class="text-sm font-medium">Create Property</router-link> -->
@@ -88,9 +95,10 @@ import axios from "axios";
 import { ref, onMounted} from "vue";
 import useProperties from '../../composables/properties'
 import useLocations from '../../composables/locations'
-const { properties, getProperties, destroyProperty} = useProperties()
+const { property, properties, getProperties, destroyProperty, filterByType} = useProperties()
 const {locations, getLocations} = useLocations()
 
+const sort = ref('');
 const deleteProperty = async (id) => {
   if (!window.confirm("You sure?")) {
     return;
@@ -98,7 +106,10 @@ const deleteProperty = async (id) => {
   await destroyProperty(id);
   await getProperties();
 };
-
+const sortValue = async () => { 
+  await filterByType(sort.value)
+};
+           
 onMounted(() => {
   getProperties();
   // getLocations();

@@ -16,7 +16,8 @@ export default function useLeases(){
         errors.value = ''
         try {
             await axios.post('/api/leases', data)
-            await router.push({name:lease.show})
+            // await router.push({name:'lease.show'})
+            await router.go(-1)
         } catch (e) {
             if(e.response.status === 422 ){
                 for(const key in e.response.data.errors){

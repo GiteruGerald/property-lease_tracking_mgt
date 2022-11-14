@@ -71,4 +71,6 @@ class LeaseController extends Controller
             'lease'=> $lease
         ]);
     } 
+    
+  
 }

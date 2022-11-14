@@ -25,3 +25,4 @@ Route::apiResource('properties', PropertyController::class);
 Route::apiResource('locations', LocationController::class); 
 Route::apiResource('leases', LeaseController::class); 
 Route::get('get-lease/{id}', 'LeaseController@getlease');
+Route::get('filter', 'PropertyController@getPropertyByType');
