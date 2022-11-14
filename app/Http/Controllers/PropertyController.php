@@ -107,7 +107,9 @@ class PropertyController extends Controller
 
         $query = Property::query();
         if($s = $request->input('s')){
-            $query->where('name', 'like', '%' . $s.'%');
+            $query->where('name', 'like', '%' . $s.'%')
+            ->orWhere('description', 'like', '%' . $s.'%')
+            ->orWhere('type', 'like', '%' . $s.'%');
         }
         return $query->get();
     }
