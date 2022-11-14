@@ -57,7 +57,16 @@ export default function useProperties() {
         axios
             .get("/api/filter", {
                 params: {
-                    s: type,
+                    filter: type,
+                },
+            })
+            .then((response) => (properties.value = response.data));
+    };
+    const searchProperty = (value) => {
+        axios
+            .get("/api/search", {
+                params: {
+                    s: value,
                 },
             })
             .then((response) => (properties.value = response.data));
@@ -71,6 +80,7 @@ export default function useProperties() {
         storeProperty,
         updateProperty,
         destroyProperty,
-        filterByType
+        filterByType,
+        searchProperty,
     };
 }

@@ -4,32 +4,64 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Properties Table</h3>
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="card-title">Properties Table</h3>
+              </div>
+              <div class="col-md-12">
+                <div class="card-tools">
+                  <!-- <button class="btn btn-outline-success" @click="newModal">
+                    Add New
+                    <i class="fas fa-user-plus fa-fw"></i>
+                  </button> -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="input-group input-group-md" style="width: 150px" >
+                        <input
+                          type="text"
+                          name="table_search"
+                          class="form-control float-left"
+                          placeholder="Search"
+                          v-model="search"
+                          @keyup="searchValue"
+                        />
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-md">
 
-            <div class="card-tools">
-              <!-- <button class="btn btn-outline-success" @click="newModal">
-                Add New
-                <i class="fas fa-user-plus fa-fw"></i>
-              </button> -->
-              <select  id="" v-model="sort" @change="sortValue">
-                <option value="">--Filter By Type--></option>
-                <option value="Residential" >Residential</option>
-                <option value="Commercial" >Commercial</option>
-                <option value="Industrial" >Industrial</option>
+                      <select class="form-control" id="" v-model="sort" @change="sortValue">
+                        <option value="">--Filter By Type--></option>
+                        <option value="Residential">Residential</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Industrial">Industrial</option>
+                      </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group input-group-md place-content-end">
 
-            </select>
-              <div class="flex mb-4 place-content-end">
-                <div class="px-4 py-2">
-                  <!-- <router-link :to="{ name: 'properties.create' }" class="text-sm font-medium">Create Property</router-link> -->
-                  <button
-                    class="btn btn-outline-primary"
-                    @click="() => $router.push({ name: 'properties.create' })"
-                  >
-                    Create New
-                  </button>
+                        <button
+                          class="btn btn-outline-primary"
+                          @click="
+                            () => $router.push({ name: 'properties.create' })
+                          "
+                        >
+                          Create New
+                        </button>
+                        </div>
+                    </div>
+                  </div>
+                 
                 </div>
               </div>
             </div>
+
           </div>
 
           <div class="card-body">
@@ -52,7 +84,6 @@
                   <td>{{ property.value }}</td>
                   <td>{{ property.location }}</td>
                   <td>
-                    
                     <router-link
                       :to="{
                         name: 'properties.show',
@@ -60,9 +91,9 @@
                       }"
                       class="mr-2 ..."
                     >
-                    <i class="fa fa-eye blue"></i>
+                      <i class="fa fa-eye blue"></i>
                     </router-link>
-                    
+
                     /
                     <router-link
                       :to="{
@@ -78,7 +109,6 @@
                     <a href="#" @click="deleteProperty(property.id)">
                       <i class="fa fa-trash red"></i>
                     </a>
-                    
                   </td>
                 </tr>
               </tbody>
@@ -92,24 +122,30 @@
 
 <script setup>
 import axios from "axios";
-import { ref, onMounted} from "vue";
-import useProperties from '../../composables/properties'
-import useLocations from '../../composables/locations'
-const { property, properties, getProperties, destroyProperty, filterByType} = useProperties()
-const {locations, getLocations} = useLocations()
+import { ref, onMounted } from "vue";
+import useProperties from "../../composables/properties";
+import useLocations from "../../composables/locations";
+const { property, properties, getProperties, destroyProperty, filterByType, searchProperty } =
+  useProperties();
+const { locations, getLocations } = useLocations();
 
-const sort = ref('');
+const sort = ref("");
+const search = ref("");
+
 const deleteProperty = async (id) => {
   if (!window.confirm("You sure?")) {
     return;
-  } 
+  }
   await destroyProperty(id);
   await getProperties();
 };
-const sortValue = async () => { 
-  await filterByType(sort.value)
+const sortValue = async () => {
+  await filterByType(sort.value);
 };
-           
+const searchValue = async () => {
+  await searchProperty(search.value);
+};
+
 onMounted(() => {
   getProperties();
   // getLocations();

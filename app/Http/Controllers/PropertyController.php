@@ -94,16 +94,21 @@ class PropertyController extends Controller
 
         $query = Property::query();
 
-        if($s = $request->input('s')){
-            // $query->whereRaw('name LIKE "%"'.$s.'"%"');
-            $query->where('type', 'like', '%' . $s.'%');
-
-                    // ->orWhereRaw('description LIKE "%"'.$s.'"%"');
+        if($f = $request->input('filter')){
+            $query->where('type', 'like', '%' . $f.'%');
         }
-        // $properties=Property::where('type',$request->sort)->get();
         return $query->get();
         // return response()->json([
         //     'property'=>$properties
         // ]);
     } 
+
+    public function searchProperty(Request $request){
+
+        $query = Property::query();
+        if($s = $request->input('s')){
+            $query->where('name', 'like', '%' . $s.'%');
+        }
+        return $query->get();
+    }
 }
