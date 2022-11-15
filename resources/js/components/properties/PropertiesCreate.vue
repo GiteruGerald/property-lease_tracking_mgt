@@ -80,9 +80,10 @@
                   <label class="col-sm-5 col-form-label">Description</label>
                   <textarea
                     class="form-control"
-                    v-model="form.desc"
+                    v-model="form.description"
                     id="exampleFormControlTextarea1"
                     rows="3"
+                    name="description"
                   ></textarea>
                 </div>
               </div>
@@ -125,7 +126,7 @@ const saveProperty = async () => {
 
 const uploadPic = (e)=>{
   let file = e.target.files[0];
-  console.log(file);
+  // console.log(file);
 
   let reader = new FileReader();
   let limit = 1024 * 1024* 2;

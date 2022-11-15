@@ -45,7 +45,7 @@
 
                           <router-link :to="{
                             name:'lease.show',
-                            params:{id:property.id}
+                            params:{id: props.id}
                           }">
                             <i class="fas fa-eye mr-1"></i>
                           </router-link>
@@ -131,7 +131,7 @@
               <div class="text-center mt-5 mb-3">
                 <a href="#" class="btn btn-sm btn-primary">Add files</a>
                 <router-link
-                  :to="{ name: 'properties.edit', params: { id: property.id } }"
+                  :to="{ name: 'properties.edit', params: { id: props.id } }"
                   class="btn btn-sm btn-warning"
                   >Edit Property Details</router-link
                 >
@@ -141,7 +141,7 @@
         </div>
       </div>
     </section>
-    !-- Add New Modal -->
+    <!-- Add New Modal -->
     <div class="modal fade" id="addNewModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -308,7 +308,7 @@ import useLeases from "../../composables/leases";
 import { onBeforeMount, onMounted, reactive } from "vue";
 
 const { errors, property, getProperty } = useProperties();
-const { lease, addLeaseease } = useLeases();  
+const { lease, addLease } = useLeases();  
 
 const props = defineProps({
   id: {
@@ -334,15 +334,13 @@ const newModal = () => {
   $("#addNewModal").modal("show");
 };
 
-const saveLease = async()=>{
+const saveLease = async () =>{
   await addLease({...form})
-  // $("#addNewModal").modal("hide");
+  $("#addNewModal").modal("hide");
 
 }
 onBeforeMount(
   () => getProperty(props.id)
 );
-onMounted(()=>{
-  console.log(props.id)
-})
+
 </script>

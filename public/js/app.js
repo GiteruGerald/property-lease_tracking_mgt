@@ -24006,15 +24006,12 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
     var _useLeases = (0,_composables_leases__WEBPACK_IMPORTED_MODULE_1__["default"])(),
       lease = _useLeases.lease,
-      addLease = _useLeases.addLease,
       getLease = _useLeases.getLease;
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       getLease(props.id);
-      console.log(lease.value);
     });
     var __returned__ = {
       lease: lease,
-      addLease: addLease,
       getLease: getLease,
       props: props,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
@@ -24231,7 +24228,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
     var uploadPic = function uploadPic(e) {
       var file = e.target.files[0];
-      console.log(file);
+      // console.log(file);
+
       var reader = new FileReader();
       var limit = 1024 * 1024 * 2;
       if (file['size'] < limit) {
@@ -24303,17 +24301,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
       return getProperty(props.id);
     });
-    var uploadPic = function uploadPic(e) {
-      var file = e.target.files[0];
-      console.log(file);
-      var reader = new FileReader();
-      // Optional
-      reader.onloadend = function (file) {
-        console.log('RESULT', reader.result);
-      };
-      reader.readAsDataURL(file); //needed
-    };
-
     var saveProperty = /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -24339,7 +24326,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       updateProperty: updateProperty,
       getProperty: getProperty,
       props: props,
-      uploadPic: uploadPic,
       saveProperty: saveProperty,
       useProperties: _composables_properties__WEBPACK_IMPORTED_MODULE_0__["default"],
       reactive: vue__WEBPACK_IMPORTED_MODULE_1__.reactive,
@@ -24397,7 +24383,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       getProperty = _useProperties.getProperty;
     var _useLeases = (0,_composables_leases__WEBPACK_IMPORTED_MODULE_1__["default"])(),
       lease = _useLeases.lease,
-      addLeaseease = _useLeases.addLeaseease;
+      addLease = _useLeases.addLease;
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
       property_id: props.id,
       fname: '',
@@ -24422,6 +24408,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 2;
                 return addLease(_objectSpread({}, form));
               case 2:
+                $("#addNewModal").modal("hide");
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -24435,15 +24423,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     (0,vue__WEBPACK_IMPORTED_MODULE_2__.onBeforeMount)(function () {
       return getProperty(props.id);
     });
-    (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
-      console.log(props.id);
-    });
     var __returned__ = {
       errors: errors,
       property: property,
       getProperty: getProperty,
       lease: lease,
-      addLeaseease: addLeaseease,
+      addLease: addLease,
       props: props,
       form: form,
       newModal: newModal,
@@ -24633,7 +24618,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "container"
+  "class": "container mt-5"
 };
 var _hoisted_2 = {
   "class": "content"
@@ -24655,39 +24640,97 @@ var _hoisted_7 = {
 };
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-muted text-center"
-}, "Property Details", -1 /* HOISTED */);
+}, "Contact Details", -1 /* HOISTED */);
 var _hoisted_9 = {
   "class": "list-group list-group-unbordered mb-3"
 };
 var _hoisted_10 = {
   "class": "list-group-item"
 };
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Category", -1 /* HOISTED */);
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Name", -1 /* HOISTED */);
 var _hoisted_12 = {
   "class": "float-right"
 };
 var _hoisted_13 = {
   "class": "list-group-item"
 };
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Value / Price", -1 /* HOISTED */);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Email Address", -1 /* HOISTED */);
 var _hoisted_15 = {
   "class": "float-right"
 };
 var _hoisted_16 = {
   "class": "list-group-item"
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Location", -1 /* HOISTED */);
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Phone Nmber", -1 /* HOISTED */);
 var _hoisted_18 = {
   "class": "float-right"
 };
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
+var _hoisted_19 = {
+  "class": "col-md-3"
+};
+var _hoisted_20 = {
+  "class": "card card-primary card-outline"
+};
+var _hoisted_21 = {
+  "class": "card-body box-profile"
+};
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-muted text-center"
+}, "Lease Details", -1 /* HOISTED */);
+var _hoisted_23 = {
+  "class": "list-group list-group-unbordered mb-3"
+};
+var _hoisted_24 = {
+  "class": "list-group-item"
+};
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Category", -1 /* HOISTED */);
+var _hoisted_26 = {
+  "class": "float-right"
+};
+var _hoisted_27 = {
+  "class": "list-group-item"
+};
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Rent (per Month)", -1 /* HOISTED */);
+var _hoisted_29 = {
+  "class": "float-right"
+};
+var _hoisted_30 = {
+  "class": "list-group-item"
+};
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Start Date", -1 /* HOISTED */);
+var _hoisted_32 = {
+  "class": "float-right"
+};
+var _hoisted_33 = {
+  "class": "list-group-item"
+};
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Duration", -1 /* HOISTED */);
+var _hoisted_35 = {
+  "class": "float-right"
+};
+var _hoisted_36 = {
+  "class": "list-group-item"
+};
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Deposit", -1 /* HOISTED */);
+var _hoisted_38 = {
+  "class": "float-right"
+};
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
   "class": "list-group-item"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Lease Status"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   "class": "float-right"
 }, "Active/Inactive")], -1 /* HOISTED */);
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h5 class=\"mt-5 text-muted\">Lease files</h5><ul class=\"list-unstyled\"><li><a href=\"\" class=\"btn-link text-secondary\"><i class=\"far fa-fw fa-file-word\"></i> Functional-requirements.docx</a></li><li><a href=\"\" class=\"btn-link text-secondary\"><i class=\"far fa-fw fa-file-pdf\"></i> UAT.pdf</a></li><li><a href=\"#\" class=\"link-black text-sm\"><i class=\"fas fa-link mr-1\"></i> Demo File 1 v2</a></li></ul>", 2);
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h5 class=\"mt-5 text-muted\">Lease files</h5><ul class=\"list-unstyled\"><li><a href=\"\" class=\"btn-link text-secondary\"><i class=\"far fa-fw fa-file-word\"></i> Functional-requirements.docx</a></li><li><a href=\"\" class=\"btn-link text-secondary\"><i class=\"far fa-fw fa-file-pdf\"></i> UAT.pdf</a></li><li><a href=\"#\" class=\"link-black text-sm\"><i class=\"fas fa-link mr-1\"></i> Demo File 1 v2</a></li></ul>", 2);
+var _hoisted_42 = {
+  "class": "col-md-3 float-right"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.value.fname), 1 /* TEXT */), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.type), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.lname), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.start), 1 /* TEXT */)]), _hoisted_19]), _hoisted_20])])])])])]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.fname) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.lname), 1 /* TEXT */), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.fname) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.lname), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.phone), 1 /* TEXT */)])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.type), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.rent), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.start), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.duration), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.lease.deposit), 1 /* TEXT */)]), _hoisted_39]), _hoisted_40])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "btn btn-outline-success",
+    onClick: _cache[0] || (_cache[0] = function () {
+      return _ctx.$router.go(-1);
+    })
+  }, " Back ")])])])]);
 }
 
 /***/ }),
@@ -25020,11 +25063,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 32 /* HYDRATE_EVENTS */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "form-control",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-      return $setup.form.desc = $event;
+      return $setup.form.description = $event;
     }),
     id: "exampleFormControlTextarea1",
-    rows: "3"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.desc]])])]), _hoisted_29], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_9)])])])])]);
+    rows: "3",
+    name: "description"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.description]])])]), _hoisted_29], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_9)])])])])]);
 }
 
 /***/ }),
@@ -25110,15 +25154,9 @@ var _hoisted_24 = {
   "class": "form-group"
 };
 var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "col-sm-2 col-form-label"
-}, "Profile Photo", -1 /* HOISTED */);
-var _hoisted_26 = {
-  "class": "form-group"
-};
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "col-sm-5 col-form-label"
 }, "Description", -1 /* HOISTED */);
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "footer"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
@@ -25129,9 +25167,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-outline-success",
     onClick: _cache[0] || (_cache[0] = function () {
-      return _ctx.$router.push({
-        name: 'properties.index'
-      });
+      return _ctx.$router.go(-1);
     })
   }, " Back ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     "class": "space-y-6",
@@ -25165,19 +25201,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "location",
     placeholder: "Enter Location",
     "class": "form-control"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.property.location]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    onChange: $setup.uploadPic,
-    type: "file",
-    "class": "form-control",
-    name: "featured_image"
-  }, null, 32 /* HYDRATE_EVENTS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.property.location]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "class": "form-control",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $setup.property.description = $event;
     }),
     id: "exampleFormControlTextarea1",
     rows: "3"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.property.description]])])]), _hoisted_28], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_9)])])])])]);
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.property.description]])])]), _hoisted_26], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_9)])])])])]);
 }
 
 /***/ }),
@@ -25446,7 +25477,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     to: {
       name: 'lease.show',
       params: {
-        id: $setup.property.id
+        id: $setup.props.id
       }
     }
   }, {
@@ -25466,7 +25497,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     to: {
       name: 'properties.edit',
       params: {
-        id: $setup.property.id
+        id: $setup.props.id
       }
     },
     "class": "btn btn-sm btn-warning"
@@ -25475,7 +25506,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit Property Details")];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" !-- Add New Modal --> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_48, "Apply Lease for " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.property.name), 1 /* TEXT */), _hoisted_49]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  }, 8 /* PROPS */, ["to"])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Add New Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_48, "Apply Lease for " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.property.name), 1 /* TEXT */), _hoisted_49]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.saveLease, ["prevent"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("fieldset", null, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
@@ -25707,7 +25738,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 function useLeases() {
   var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
-  var lease = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+  var lease = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
   var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
   var getLease = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(id) {
@@ -25720,9 +25751,8 @@ function useLeases() {
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/get-lease/".concat(id));
             case 2:
               response = _context.sent;
-              lease.value = response.data.lease;
-              console.log(lease.value);
-            case 5:
+              lease.value = response.data[0];
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -25745,25 +25775,22 @@ function useLeases() {
               _context2.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/leases', data);
             case 4:
-              _context2.next = 6;
-              return router.go(-1);
-            case 6:
-              _context2.next = 11;
+              _context2.next = 9;
               break;
-            case 8:
-              _context2.prev = 8;
+            case 6:
+              _context2.prev = 6;
               _context2.t0 = _context2["catch"](1);
               if (_context2.t0.response.status === 422) {
                 for (key in _context2.t0.response.data.errors) {
                   errors.value = _context2.t0.response.data.errors;
                 }
               }
-            case 11:
+            case 9:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[1, 8]]);
+      }, _callee2, null, [[1, 6]]);
     }));
     return function addLease(_x2) {
       return _ref2.apply(this, arguments);

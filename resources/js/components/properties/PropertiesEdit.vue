@@ -9,7 +9,7 @@
             <div class="card-tools">
               <button
                 class="btn btn-outline-success"
-                @click="() => $router.push({ name: 'properties.index' })"
+                @click="() => $router.go(-1)"
               >
                 Back
               </button>
@@ -66,17 +66,7 @@
                       class="form-control"
                     />
                   </div>
-                  <div class="form-group">
-                      <label class="col-sm-2 col-form-label"
-                        >Profile Photo</label
-                      >
-                        <input
-                          @change="uploadPic"
-                          type="file"
-                          class="form-control"
-                          name="featured_image"
-                        />
-                  </div>
+            
                 <div class="form-group">
                   <label class="col-sm-5 col-form-label">Description</label>
                   <textarea
@@ -113,18 +103,6 @@ const props = defineProps({
 });
 onMounted(() => getProperty(props.id));
 
-const uploadPic = (e)=>{
-  let file = e.target.files[0];
-  console.log(file);
-  let reader = new FileReader();
-// Optional
-  reader.onloadend = (file) => {
-    console.log('RESULT', reader.result)
-  }
-
-  reader.readAsDataURL(file); //needed
-  
-}
 const saveProperty = async () => {
   await updateProperty(props.id);
 };

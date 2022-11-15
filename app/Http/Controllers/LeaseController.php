@@ -64,12 +64,11 @@ class LeaseController extends Controller
     public function getlease($id){
         $lease = Lease::with('property')->where('property_id',$id)->get();
 
-        // $property = Property::find($id);
-        // $lease = Lease::where('property_id', $property->id)->get();
+        // return response()->json([
+        //     'lease'=> $lease
+        // ]);
+        return json_encode($lease);
 
-        return response()->json([
-            'lease'=> $lease
-        ]);
     } 
     
   
