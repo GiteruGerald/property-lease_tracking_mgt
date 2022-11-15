@@ -108,6 +108,10 @@
 <script setup>
 import useProperties from "../../composables/properties";
 import { reactive } from "vue";
+import { useToastr } from "../../toastr";
+
+const toastr = useToastr();
+
 
 const form = reactive({
   name: "",
@@ -122,6 +126,7 @@ const { errors, storeProperty } = useProperties();
 
 const saveProperty = async () => {
   await storeProperty({ ...form });
+  toastr.sucess("Property Added Successfully")
 };
 
 const uploadPic = (e)=>{

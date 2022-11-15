@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import { useToastr } from "../toastr";
 
 export default function useProperties() {
     const property = ref([]);
@@ -24,11 +25,13 @@ export default function useProperties() {
         try {
             await axios.post("/api/properties", data);
             await router.push({ name: "properties.index" });
+            toastr.success("Property Added Successfully")
+
         } catch (e) {
-            if (e.response.status === 422) {
+            // if (e.response.status === 422) {
                 for (const key in e.response.data.errors) {
                     errors.value = e.response.data.errors;
-                }
+                // }
             }
         }
     };
@@ -40,17 +43,19 @@ export default function useProperties() {
             await axios.patch(`/api/properties/${id}`, property.value);
             // await router.push({name:'properties.index'})
             await router.go(-1);
+            toastr.success("Property Details Updated Successfully")
         } catch (e) {
-            if (e.response.status === 422) {
+            // if (e.response.status === 422) {
                 for (const key in e.response.data.errors) {
                     errors.value = e.response.data.errors;
                 }
-            }
+            // }
         }
     };
 
     const destroyProperty = async (id) => {
         await axios.delete(`/api/properties/${id}`);
+
     };
 
     const filterByType = (type) => {
