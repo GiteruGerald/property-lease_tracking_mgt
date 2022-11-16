@@ -232,7 +232,7 @@
                       
                     </div>
                     <div class="col-3">
-                      <label>Duration(In Years)* :</label>
+                      <label>Duration(Years)* :</label>
                       <input
                       v-model="form.duration" required
                       type="number"

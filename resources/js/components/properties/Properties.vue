@@ -125,9 +125,7 @@ import axios from "axios";
 import { ref, onMounted } from "vue";
 import useProperties from "../../composables/properties";
 import useLocations from "../../composables/locations";
-import { useToastr } from "../../toastr"
 
-const toastr = useToastr();
 const { property, properties, getProperties, destroyProperty, filterByType, searchProperty } =
   useProperties();
 const { locations, getLocations } = useLocations();
@@ -141,7 +139,6 @@ const deleteProperty = async (id) => {
   }
   await destroyProperty(id);
   await getProperties();
-  toastr.warning('Property deleted Successfully')
 
 };
 const sortValue = async () => {

@@ -4,6 +4,8 @@ import { useRouter } from "vue-router";
 import { useToastr } from "../toastr";
 
 export default function useProperties() {
+
+    const toastr = useToastr();
     const property = ref([]);
     const properties = ref([]);
 
@@ -33,6 +35,8 @@ export default function useProperties() {
                     errors.value = e.response.data.errors;
                 // }
             }
+            toastr.error("Error adding Property Details")
+
         }
     };
 
@@ -43,18 +47,27 @@ export default function useProperties() {
             await axios.patch(`/api/properties/${id}`, property.value);
             // await router.push({name:'properties.index'})
             await router.go(-1);
-            toastr.success("Property Details Updated Successfully")
+            toastr.info("Property Details Updated Successfully")
         } catch (e) {
             // if (e.response.status === 422) {
                 for (const key in e.response.data.errors) {
                     errors.value = e.response.data.errors;
                 }
             // }
+            toastr.error("Error updating Property Details")
+
         }
     };
 
     const destroyProperty = async (id) => {
-        await axios.delete(`/api/properties/${id}`);
+        try {
+            
+            await axios.delete(`/api/properties/${id}`);
+            toastr.warning('Property deleted Successfully')
+        } catch (error) {
+            toastr.error("Error Deleting Property, Try Again Later")
+            
+        }
 
     };
 

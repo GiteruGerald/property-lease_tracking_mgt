@@ -1,12 +1,14 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
+import { useToastr } from "../toastr";
 
 export default function useLeases(){
     const router = useRouter()
     const lease =  ref('')
     const errors = ref('')
 
+    const toastr = useToastr()
     const getLease = async(id)=>{
         let response = await axios.get(`/api/get-lease/${id}`)
         lease.value = response.data[0]
@@ -17,12 +19,10 @@ export default function useLeases(){
             await axios.post('/api/leases', data)
             // await router.push({name:'lease.show'})
             // await router.go(-1)
+            toastr.success("Lease Application Added Successfully")
         } catch (e) {
-            if(e.response.status === 422 ){
-                for(const key in e.response.data.errors){
-                    errors.value =e.response.data.errors
-                }
-            }
+            toastr.error("Error adding Lease Details")
+            
         }
     }
 
