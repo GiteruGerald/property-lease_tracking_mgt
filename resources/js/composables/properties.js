@@ -19,7 +19,9 @@ export default function useProperties() {
 
     const getProperty = async (id) => {
         let response = await axios.get(`/api/properties/${id}`);
-        property.value = response.data.data;
+        // property.value = response.data.data;
+        property.value = response.data[0];
+        console.log(property.value)
     };
 
     const storeProperty = async (data) => {

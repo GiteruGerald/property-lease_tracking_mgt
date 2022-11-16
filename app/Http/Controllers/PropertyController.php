@@ -58,7 +58,10 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        return new PropertyResource($property);
+        $property = Property::with('leases')->where('id', $property->id)->get();
+
+        return json_encode($property);
+        // return new PropertyResource($property);
     }
 
     /**

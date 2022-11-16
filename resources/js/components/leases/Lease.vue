@@ -32,7 +32,7 @@
               <p class="text-muted text-center">Lease Details</p>
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-                  <b>Category</b> <a class="float-right">{{ lease.type }}</a>
+                  <b>Category</b> <a class="float-right">{{ lease.property }}</a>
                 </li>
                 <li class="list-group-item">
                   <b>Rent (per Month)</b>
