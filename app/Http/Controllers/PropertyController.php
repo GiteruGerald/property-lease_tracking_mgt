@@ -33,7 +33,7 @@ class PropertyController extends Controller
     {
         $property = Property::create($request->validated());
 
-        if ($request->image) {
+    if ($request->image) {
             $name = time() . '.' . explode('/', explode(
                 ':',
                 substr($request->image, 0, strpos($request->image, ';'))

@@ -24,7 +24,7 @@ class CreatePropertiesTable extends Migration
             
             $table->unsignedBigInteger('value')->default(0);
             // $table->longText('image')->default('https://picsum.photos/1200/800');
-            $table->longText('image')->nullable();
+            $table->string('image')->default('https://placehold.it/150x250');
             $table->longText('description')->nullable();
 
             $table->timestamps();
