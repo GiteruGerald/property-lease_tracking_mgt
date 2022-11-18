@@ -24421,12 +24421,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return addLease(_objectSpread({}, form));
+                return addLease(_objectSpread({}, form)).then(function () {
+                  $("#addNewModal").modal("hide");
+                  getProperty(props.id);
+                  console.log(property.value);
+                });
               case 2:
-                $("#addNewModal").modal("hide");
-                _context.next = 5;
-                return getProperty(props.id);
-              case 5:
               case "end":
                 return _context.stop();
             }

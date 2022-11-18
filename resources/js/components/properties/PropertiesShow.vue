@@ -376,11 +376,17 @@ const newModal = () => {
 };
 
 const saveLease = async () => {
-  await addLease({ ...form });
-  $("#addNewModal").modal("hide");
-  await getProperty(props.id);
+  
+  await addLease({ ...form })
+    .then(()=>{
+      $("#addNewModal").modal("hide");
+      getProperty(props.id);
+
+      console.log(property.value)
+    })
 };
 onBeforeMount(() => {
   getProperty(props.id);
+
 });
 </script>
