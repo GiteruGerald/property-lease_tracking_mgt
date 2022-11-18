@@ -119,7 +119,6 @@ const { errors, storeProperty } = useProperties();
 
 const saveProperty = async () => {
   await storeProperty({ ...form });
-  toastr.sucess("Property Added Successfully")
 };
 
 const uploadPic = (e)=>{

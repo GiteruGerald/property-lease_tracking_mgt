@@ -37,15 +37,6 @@
                             <i class="fas fa-pen mr-1"></i>
                             Draft your first lease
                           </button>
-
-                          <router-link
-                            :to="{
-                              name: 'lease.show',
-                              params: { id: props.id },
-                            }"
-                          >
-                            <i class="fas fa-eye mr-1"></i>
-                          </router-link>
                         </p>
                         <p>No Lease Found</p>
 
@@ -126,7 +117,7 @@
         <div class="col-md-3">
           <div class="card card-primary card-outline">
             <div class="card-body box-profile">
-              <div class="text-center" v-if="!property.image">
+              <div class="text-center" v-if="property.image">
                 <img
                   class="profile-user-img img-fluid"
                   :src="'/img/property/' + property.image"
