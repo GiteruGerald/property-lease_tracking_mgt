@@ -106,7 +106,7 @@
                     </router-link>
 
                     /
-                    <a href="#" @click="deleteProperty(property.id)">
+                    <a href="#" @click="confirmPropDelete(property.id)">
                       <i class="fa fa-trash red"></i>
                     </a>
                   </td>
@@ -117,6 +117,27 @@
         </div>
       </div>
     </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deletePropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Property</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Are you sure you want to delete this property?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button  @click.prevent="deleteProperty(propertyBeingDel)" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 </template>
 
@@ -132,15 +153,27 @@ const { locations, getLocations } = useLocations();
 
 const sort = ref("");
 const search = ref("");
+const propertyBeingDel = ref('')
 
 const deleteProperty = async (id) => {
-  if (!window.confirm("Are you sure you want to delete this property?")) {
-    return;
-  }
+
+  $('#deletePropModal').modal('show')
+
+  // if (!window.confirm("Are you sure you want to delete this property?")) {
+  //   return;
+  // }
   await destroyProperty(id);
+  await $('#deletePropModal').modal('hide')
+
   await getProperties();
 
 };
+const confirmPropDelete = (id) =>{
+  propertyBeingDel.value = id
+  console.log(propertyBeingDel.value)
+  $('#deletePropModal').modal('show')
+
+}
 const sortValue = async () => {
   await filterByType(sort.value);
 };

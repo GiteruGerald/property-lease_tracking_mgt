@@ -24068,24 +24068,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       getLocations = _useLocations.getLocations;
     var sort = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
     var search = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var propertyBeingDel = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
     var deleteProperty = /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(id) {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (window.confirm("Are you sure you want to delete this property?")) {
-                  _context.next = 2;
-                  break;
-                }
-                return _context.abrupt("return");
-              case 2:
-                _context.next = 4;
+                $('#deletePropModal').modal('show');
+
+                // if (!window.confirm("Are you sure you want to delete this property?")) {
+                //   return;
+                // }
+                _context.next = 3;
                 return destroyProperty(id);
-              case 4:
-                _context.next = 6;
+              case 3:
+                _context.next = 5;
+                return $('#deletePropModal').modal('hide');
+              case 5:
+                _context.next = 7;
                 return getProperties();
-              case 6:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -24096,6 +24099,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _ref2.apply(this, arguments);
       };
     }();
+    var confirmPropDelete = function confirmPropDelete(id) {
+      propertyBeingDel.value = id;
+      console.log(propertyBeingDel.value);
+      $('#deletePropModal').modal('show');
+    };
     var sortValue = /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -24150,7 +24158,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       getLocations: getLocations,
       sort: sort,
       search: search,
+      propertyBeingDel: propertyBeingDel,
       deleteProperty: deleteProperty,
+      confirmPropDelete: confirmPropDelete,
       sortValue: sortValue,
       searchValue: searchValue,
       axios: (axios__WEBPACK_IMPORTED_MODULE_0___default()),
@@ -24851,6 +24861,31 @@ var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "fa fa-trash red"
 }, null, -1 /* HOISTED */);
 var _hoisted_30 = [_hoisted_29];
+var _hoisted_31 = {
+  "class": "modal fade",
+  id: "deletePropModal",
+  tabindex: "-1",
+  role: "dialog",
+  "aria-labelledby": "exampleModalLabel",
+  "aria-hidden": "true"
+};
+var _hoisted_32 = {
+  "class": "modal-dialog",
+  role: "document"
+};
+var _hoisted_33 = {
+  "class": "modal-content"
+};
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete Property</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\"><h5>Are you sure you want to delete this property?</h5></div>", 2);
+var _hoisted_36 = {
+  "class": "modal-footer"
+};
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "button",
+  "class": "btn btn-secondary",
+  "data-dismiss": "modal"
+}, "Cancel", -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"btn btn-outline-success\" @click=\"newModal\">\r\n                    Add New\r\n                    <i class=\"fas fa-user-plus fa-fw\"></i>\r\n                  </button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -24908,10 +24943,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" / "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: "#",
       onClick: function onClick($event) {
-        return $setup.deleteProperty(property.id);
+        return $setup.confirmPropDelete(property.id);
       }
     }, _hoisted_30, 8 /* PROPS */, _hoisted_28)])]);
-  }), 128 /* KEYED_FRAGMENT */))])])])])])])]);
+  }), 128 /* KEYED_FRAGMENT */))])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Delete Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $setup.deleteProperty($setup.propertyBeingDel);
+    }, ["prevent"])),
+    type: "button",
+    "class": "btn btn-primary"
+  }, "Save changes")])])])])]);
 }
 
 /***/ }),
