@@ -142,7 +142,6 @@
 </template>
 
 <script setup>
-import axios from "axios";
 import { ref, onMounted } from "vue";
 import useProperties from "../../composables/properties";
 import useLocations from "../../composables/locations";
@@ -163,7 +162,7 @@ const deleteProperty = async (id) => {
   //   return;
   // }
   await destroyProperty(id);
-  await $('#deletePropModal').modal('hide')
+  await   $('#deletePropModal').modal('hide')
 
   await getProperties();
 

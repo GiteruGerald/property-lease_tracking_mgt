@@ -8,6 +8,7 @@ export default function useProperties() {
     const toastr = useToastr();
     const property = ref([]);
     const properties = ref([]);
+    const endDate = ref([])
 
     const errors = ref("");
     const router = useRouter();
@@ -21,6 +22,14 @@ export default function useProperties() {
         let response = await axios.get(`/api/properties/${id}`);
         // property.value = response.data.data;
         property.value = response.data[0];
+        
+        //Calculating End date 
+        let date = new Date(property.value.leases.start);
+        addYears(date, property.value.leases.duration);
+        endDate.value = date
+        // console.log(date)
+        // console.log(endDate.value)
+
     };
 
     const storeProperty = async (data) => {
@@ -90,10 +99,16 @@ export default function useProperties() {
             })
             .then((response) => (properties.value = response.data));
     };
+
+    const addYears = (date, years) =>{
+        date.setFullYear(date.getFullYear() + years);
+        // return date;
+    };
     return {
         errors,
         property,
         properties,
+        endDate,
         getProperty,
         getProperties,
         storeProperty,

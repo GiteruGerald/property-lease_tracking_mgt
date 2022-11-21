@@ -62,7 +62,8 @@
                             <li class="list-group-item">
                               <b>Start Date</b>
                               <a class="float-right">{{
-                                property.leases.start
+                                moment(property.leases.start).format('LL')
+                                
                               }}</a>
                             </li>
                             <li class="list-group-item">
@@ -80,6 +81,10 @@
                             <li class="list-group-item">
                               <b>Lease Status</b>
                               <a class="float-right">Active/Inactive</a>
+                            </li>
+                            <li class="list-group-item">
+                              <b>Expiry Date</b>
+                              <a class="float-right">{{ moment(endDate).format('LL') }}</a>
                             </li>
                           </ul>
                         </div>
@@ -346,9 +351,10 @@
   <script setup>
 import useProperties from "../../composables/properties";
 import useLeases from "../../composables/leases";
+import moment from 'moment'
 import { onBeforeMount, onMounted, reactive } from "vue";
 
-const { errors, property, getProperty } = useProperties();
+const { errors, property, getProperty, endDate } = useProperties();
 const { lease, addLease } = useLeases();
 
 const props = defineProps({
@@ -382,7 +388,7 @@ const saveLease = async () => {
       $("#addNewModal").modal("hide");
       getProperty(props.id);
 
-      console.log(property.value)
+      // console.log(property.value)
     })
 };
 onBeforeMount(() => {
