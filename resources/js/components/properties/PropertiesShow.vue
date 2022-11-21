@@ -62,8 +62,8 @@
                             <li class="list-group-item">
                               <b>Start Date</b>
                               <a class="float-right">{{
-                                moment(property.leases.start).format('LL')
-                                
+                                // moment(property.leases.start).format('LL')
+                                formatDate(property.leases.start)
                               }}</a>
                             </li>
                             <li class="list-group-item">
@@ -78,13 +78,15 @@
                                 property.leases.deposit
                               }}</a>
                             </li>
-                            <li class="list-group-item">
-                              <b>Lease Status</b>
-                              <a class="float-right">Active/Inactive</a>
-                            </li>
+                            
                             <li class="list-group-item">
                               <b>Expiry Date</b>
-                              <a class="float-right">{{ moment(endDate).format('LL') }}</a>
+                              <a class="float-right bg-danger" v-if="endDate <= currDate">{{
+                                formatDate(endDate)
+                              }}</a>
+                              <a class="float-right" v-else>
+                                {{ formatDate(endDate) }}
+                                    </a>
                             </li>
                           </ul>
                         </div>
@@ -93,10 +95,10 @@
                   </div>
                 </div>
                 <div
-                  class="col-12 col-md-12 col-lg-4 order-1 order-md-2"
+                  class="col-12 col-md-12 col-lg-4 order-1 order-md-2 mt-4"
                   v-if="property.leases"
                 >
-                  <h5 class="text-primary">Lessee Details</h5>
+                  <h5 class="text-primary">Contact Details</h5>
                   <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
                       <b>Name</b>
@@ -130,12 +132,6 @@
                   :alt="property.image"
                 />
               </div>
-              <div class="text-center" v-else>
-                <img
-                  src="
-                  https://via.placeholder.com/150"
-                />
-              </div>
 
               <h3 class="profile-username text-center">{{ property.name }}</h3>
               <p class="text-muted text-center">Property Details</p>
@@ -152,12 +148,14 @@
                   <a class="float-right">{{ property.location }}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Lease Status</b> <a class="float-right">Active/Inactive</a>
+                  <b>Lease Status</b> 
+                  <span class="float-right bg-danger" v-if="endDate <= currDate">Expired</span>
+                  <a class="float-right" v-else>Active</a>
                 </li>
               </ul>
 
               <div class="text-center mt-5 mb-3">
-                <a href="#" class="btn btn-sm btn-primary">Add files</a>
+                <!-- <a href="#" class="btn btn-sm btn-primary">Add files</a> -->
                 <router-link
                   :to="{ name: 'properties.edit', params: { id: props.id } }"
                   class="btn btn-sm btn-warning"
@@ -215,6 +213,7 @@
                         placeholder="Last Name"
                         class="form-control"
                       />
+                      <span v-if="errors">{{ errors }}</span>
                     </div>
                   </div>
                   <div class="row">
@@ -351,10 +350,10 @@
   <script setup>
 import useProperties from "../../composables/properties";
 import useLeases from "../../composables/leases";
-import moment from 'moment'
+import { formatDate } from "../../composables/helper";
 import { onBeforeMount, onMounted, reactive } from "vue";
 
-const { errors, property, getProperty, endDate } = useProperties();
+const { errors, property, getProperty, endDate, currDate } = useProperties();
 const { lease, addLease } = useLeases();
 
 const props = defineProps({
@@ -382,17 +381,14 @@ const newModal = () => {
 };
 
 const saveLease = async () => {
-  
-  await addLease({ ...form })
-    .then(()=>{
-      $("#addNewModal").modal("hide");
-      getProperty(props.id);
+  await addLease({ ...form }).then(() => {
+    $("#addNewModal").modal("hide");
+    getProperty(props.id);
 
-      // console.log(property.value)
-    })
+    // console.log(property.value)
+  });
 };
 onBeforeMount(() => {
   getProperty(props.id);
-
 });
 </script>

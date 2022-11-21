@@ -19,6 +19,7 @@
           <div class="card-body">
             <form class="space-y-6" @submit.prevent="saveProperty">
               <div class="body">
+                
                 <div class="form-group">
                   <label class="col-sm-5 col-form-label"
                     >Name of Property</label
@@ -31,6 +32,11 @@
                     placeholder="Enter Name of Property"
                     class="form-control"
                   />
+                  <div class="form-group" v-if="errors.name">
+                    <span style="background-color: lightcoral">{{
+                      errors.name
+                    }}</span>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-5 col-form-label">Property Type</label>
@@ -53,6 +59,11 @@
                     placeholder="Enter Value of Property"
                     class="form-control"
                   />
+                  <div class="form-group" v-if="errors.value">
+                    <span style="background-color: lightcoral">{{
+                      errors.value
+                    }}</span>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Location :</label>
@@ -71,9 +82,14 @@
                       @change="uploadPic"
                       type="file"
                       class="form-control"
-                      style="resize:vertical"
+                      style="resize: vertical"
                       name="image"
                     />
+                    <div class="form-group" v-if="errors.image">
+                    <span style="background-color: lightcoral">{{
+                      errors.image
+                    }}</span>
+                  </div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -105,13 +121,12 @@ import { useToastr } from "../../toastr";
 
 const toastr = useToastr();
 
-
 const form = reactive({
   name: "",
   type: "",
   value: "",
   location: "",
-  image:'',
+  image: "",
   description: "",
 });
 
@@ -121,23 +136,22 @@ const saveProperty = async () => {
   await storeProperty({ ...form });
 };
 
-const uploadPic = (e)=>{
+const uploadPic = (e) => {
   let file = e.target.files[0];
   // console.log(file);
 
   let reader = new FileReader();
-  let limit = 1024 * 1024* 2;
-  if(file['size'] < limit ){ //TODO: Implement file size validate
+  let limit = 1024 * 1024 * 2;
+  if (file["size"] < limit) {
+    //TODO: Implement file size validate
 
     reader.onloadend = (file) => {
-       form.image = reader.result
-    }
-  
-    reader.readAsDataURL(file); //needed
-  }else{
-      errors.value = "You are uploading a large file"
-  }
+      form.image = reader.result;
+    };
 
-  
-}
+    reader.readAsDataURL(file); //needed
+  } else {
+    errors.value = "You are uploading a large file";
+  }
+};
 </script>

@@ -9,6 +9,7 @@ export default function useProperties() {
     const property = ref([]);
     const properties = ref([]);
     const endDate = ref([])
+    const currDate = new Date();
 
     const errors = ref("");
     const router = useRouter();
@@ -24,9 +25,12 @@ export default function useProperties() {
         property.value = response.data[0];
         
         //Calculating End date 
-        let date = new Date(property.value.leases.start);
-        addYears(date, property.value.leases.duration);
-        endDate.value = date
+        if(property.value.leases){
+            
+            let date = new Date(property.value.leases.start);
+            addYears(date, property.value.leases.duration);
+            endDate.value = date
+        }
         // console.log(date)
         // console.log(endDate.value)
 
@@ -109,6 +113,7 @@ export default function useProperties() {
         property,
         properties,
         endDate,
+        currDate,
         getProperty,
         getProperties,
         storeProperty,

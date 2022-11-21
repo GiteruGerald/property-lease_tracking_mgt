@@ -17,7 +17,20 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        //
+        // $date = Lease::pluck('start');
+        
+        $leases = Lease::with('property')->get();
+        
+        // return response()->json($leases);
+        return LeaseResource::collection($leases);
+
+    }
+
+    public function getLeaseSorted(){
+        $leases = Lease::with('property')->orderBy('start')->get();
+
+        return LeaseResource::collection($leases);
+        
     }
 
     public function store(LeaseRequest $request)

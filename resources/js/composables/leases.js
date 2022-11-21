@@ -6,12 +6,26 @@ import { useToastr } from "../toastr";
 export default function useLeases(){
     const router = useRouter()
     const lease =  ref('')
+    const leases =  ref([])
     const errors = ref('')
 
     const toastr = useToastr()
     const getLease = async(id)=>{
         let response = await axios.get(`/api/get-lease/${id}`)
         lease.value = response.data[0]
+    }
+
+    const getLeases = async () => {
+        let response = await axios.get('/api/leases')
+        leases.value = response.data.data;
+
+       
+    }
+    const getLeasesSorted = async () => {
+        let response = await axios.get('/api/leases/sorted')
+        leases.value = response.data.data;
+
+       
     }
     const addLease = async (data) =>{
         errors.value = ''
@@ -32,7 +46,10 @@ export default function useLeases(){
     return{
         errors,
         lease,
+        leases,
         addLease,
-        getLease
+        getLease,
+        getLeases,
+        getLeasesSorted,
     }
 }

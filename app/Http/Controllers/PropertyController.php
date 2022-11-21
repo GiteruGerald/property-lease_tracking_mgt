@@ -19,7 +19,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $item = Property::latest()->get();
+        // $item = Property::latest()->get();
         return PropertyResource::collection(Property::all());
     }
 
@@ -31,9 +31,9 @@ class PropertyController extends Controller
      */
     public function store(PropertyRequest $request)
     {
+        
+        if ($request->image) {
         $property = Property::create($request->validated());
-
-    if ($request->image) {
             $name = time() . '.' . explode('/', explode(
                 ':',
                 substr($request->image, 0, strpos($request->image, ';'))
@@ -46,8 +46,12 @@ class PropertyController extends Controller
             // if (file_exists($currentPhoto)) {
             //     @unlink($currentPhoto);
             // }
-        }
+            return new PropertyResource($property);
+        }else{
+        $property = Property::create($request->validated());
         return new PropertyResource($property);
+
+        }
     }
 
     /**

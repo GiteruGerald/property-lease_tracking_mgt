@@ -112,10 +112,10 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/locations" class="nav-link">
-                                <i class="nav-icon fas fa-location-dot green"></i>
+                            <router-link to="/leases" class="nav-link">
+                                <i class="nav-icon fas fa-file-contract green"></i>
                               <p>
-                                  Locations
+                                  Leases
                               </router-link>
                           {{-- <ul class="nav ">
                               <li class="nav-item">
