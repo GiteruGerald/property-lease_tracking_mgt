@@ -27,4 +27,3 @@ Route::apiResource('leases', LeaseController::class);
 Route::get('get-lease/{id}', 'LeaseController@getlease');
 Route::get('filter', 'PropertyController@getPropertyByType');
 Route::get('search', 'PropertyController@searchProperty');
-Route::get('leases/sorted','LeaseController@getLeaseSorted');

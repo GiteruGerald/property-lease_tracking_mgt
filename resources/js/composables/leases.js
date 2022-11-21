@@ -8,6 +8,7 @@ export default function useLeases(){
     const lease =  ref('')
     const leases =  ref([])
     const errors = ref('')
+    const currDate = new Date();
 
     const toastr = useToastr()
     const getLease = async(id)=>{
@@ -22,7 +23,7 @@ export default function useLeases(){
        
     }
     const getLeasesSorted = async () => {
-        let response = await axios.get('/api/leases/sorted')
+        let response = await axios.get(`/api/leases/sorted`)
         leases.value = response.data.data;
 
        
@@ -40,6 +41,7 @@ export default function useLeases(){
         }
     }
 
+ 
     
 
 
@@ -47,6 +49,7 @@ export default function useLeases(){
         errors,
         lease,
         leases,
+        currDate,
         addLease,
         getLease,
         getLeases,

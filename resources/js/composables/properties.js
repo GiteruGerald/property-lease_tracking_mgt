@@ -105,7 +105,7 @@ export default function useProperties() {
     };
 
     const addYears = (date, years) =>{
-        date.setFullYear(date.getFullYear() + years);
+        date.setFullYear(date.getFullYear() + years);   
         // return date;
     };
     return {

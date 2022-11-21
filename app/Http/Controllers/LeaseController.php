@@ -26,12 +26,6 @@ class LeaseController extends Controller
 
     }
 
-    public function getLeaseSorted(){
-        $leases = Lease::with('property')->orderBy('start')->get();
-
-        return LeaseResource::collection($leases);
-        
-    }
 
     public function store(LeaseRequest $request)
     {

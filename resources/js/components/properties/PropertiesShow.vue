@@ -78,17 +78,27 @@
                                 property.leases.deposit
                               }}</a>
                             </li>
-                            
+
                             <li class="list-group-item">
                               <b>Expiry Date</b>
-                              <a class="float-right bg-danger" v-if="endDate <= currDate">{{
-                                formatDate(endDate)
-                              }}</a>
+                              <a
+                                class="float-right bg-danger"
+                                v-if="endDate <= currDate"
+                                >{{ formatDate(endDate) }}</a
+                              >
                               <a class="float-right" v-else>
                                 {{ formatDate(endDate) }}
-                                    </a>
+                              </a>
                             </li>
                           </ul>
+
+                          <!-- <button
+                            class="btn btn-small btn-success"
+                            @click="renewModal"
+                          >
+                            <i class="fas fa-pen mr-1"></i>
+                            Renew lease
+                          </button> -->
                         </div>
                       </div>
                     </div>
@@ -148,8 +158,10 @@
                   <a class="float-right">{{ property.location }}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Lease Status</b> 
-                  <span class="float-right bg-danger" v-if="endDate <= currDate">Expired</span>
+                  <b>Lease Status</b>
+                  <span class="float-right bg-danger" v-if="endDate <= currDate"
+                    >Expired</span
+                  >
                   <a class="float-right" v-else>Active</a>
                 </li>
               </ul>
@@ -344,17 +356,19 @@
         </div>
       </div>
     </div>
+   
   </div>
 </template>
   
   <script setup>
 import useProperties from "../../composables/properties";
 import useLeases from "../../composables/leases";
-import { formatDate } from "../../composables/helper";
+import useHelper from "../../composables/helper";
 import { onBeforeMount, onMounted, reactive } from "vue";
 
 const { errors, property, getProperty, endDate, currDate } = useProperties();
 const { lease, addLease } = useLeases();
+const { formatDate, addYears } = useHelper();
 
 const props = defineProps({
   id: {

@@ -7,9 +7,10 @@
             <h3 class="card-title">Leases</h3>
 
             <div class="card-tools">
-              <button class="btn btn-outline-success">
+              <button class="btn btn-outline-success"
+              @click="() => $router.go(-1)"
+              >
                 Back
-                <i class="fas fa-user-plus fa-fw"></i>
               </button>
             </div>
           </div>
@@ -20,9 +21,9 @@
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Property Name</th>
-                  <th>Registered</th>
-                  <th>Duration</th>
+                  <th>Registered At</th>
                   <th>Type</th>
+                  <th>Duration</th>
                   <th>Status</th>
                   <th>Options</th>
                 </tr>
@@ -34,8 +35,7 @@
                   <td>{{ formatDate(lease.start) }}</td>
                   <td>{{ lease.type }}</td>
                   <td>{{ lease.duration }}</td>
-                  <td v-if="lease.start <= currDate">Expired</td>
-                  <td v-else>Active</td>
+                  <td>{{ checkYears(lease.start, lease.duration) }}</td>
                   <td>
                     <router-link
                       :to="{
@@ -62,10 +62,11 @@
 import axios from "axios";
 import { onMounted } from "vue";
 import  useLeases  from '../../composables/leases'
-import { formatDate } from '../../composables/helper'
+import useHelper from '../../composables/helper'
 const currDate = new Date();
 
 const { leases, getLeases} = useLeases()
+const { formatDate, checkYears } = useHelper()
 
 
 onMounted(() => {
