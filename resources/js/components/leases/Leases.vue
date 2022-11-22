@@ -36,7 +36,7 @@
                   <td>{{ lease.type }}</td>
                   <td>{{ lease.duration }}</td>
                   <td>{{ checkYears(lease.start, lease.duration) }}</td>
-                  <td>
+                  <td align="center">
                     <router-link
                       :to="{
                         name: 'properties.show',
@@ -44,7 +44,7 @@
                       }"
                       class="mr-2 ..."
                     >
-                    <i class="fa fa-eye"></i>
+                    <button class="btn btn-sm btn-warning"> View</button>
 
                     </router-link>
                   </td>

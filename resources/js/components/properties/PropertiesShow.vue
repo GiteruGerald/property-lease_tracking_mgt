@@ -35,7 +35,7 @@
                             @click="newModal"
                           >
                             <i class="fas fa-pen mr-1"></i>
-                            Draft your first lease
+                            Draft Lease
                           </button>
                         </p>
                         <p>No Lease Found</p>
@@ -157,7 +157,7 @@
                   <b>Location</b>
                   <a class="float-right">{{ property.location }}</a>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item" v-if="property.leases">
                   <b>Lease Status</b>
                   <span class="float-right bg-danger" v-if="endDate <= currDate"
                     >Expired</span
