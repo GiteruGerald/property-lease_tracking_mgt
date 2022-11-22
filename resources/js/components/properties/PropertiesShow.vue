@@ -92,6 +92,14 @@
                             </li>
                           </ul>
 
+                          <router-link
+                            :to="{
+                              name: 'lease.edit',
+                              params: { id: props.id },
+                            }"
+                            class="btn btn-sm btn-warning"
+                            >Renew/Update Lease Details</router-link
+                          >
                           <!-- <button
                             class="btn btn-small btn-success"
                             @click="renewModal"
@@ -356,7 +364,6 @@
         </div>
       </div>
     </div>
-   
   </div>
 </template>
   

@@ -54,7 +54,9 @@ class LeaseController extends Controller
      */
     public function update(LeaseRequest $request, Lease $lease)
     {
-        //
+        $lease->update(($request->validated()));
+
+        return new LeaseResource($lease);
     }
 
     /**

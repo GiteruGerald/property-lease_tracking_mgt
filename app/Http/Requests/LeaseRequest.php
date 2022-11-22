@@ -31,7 +31,7 @@ class LeaseRequest extends FormRequest
             'start'=> ['date', 'required'],
             // 'start'=> ['date','after:today', 'required'],
             'duration'=> ['numeric','required'],
-            'property_id'=> ['numeric','required', 'unique:leases'],
+            'property_id'=> ['numeric','required'],
             'rent'=> ['numeric','required'],
             'deposit'=> ['numeric','required'],
             'type'=> ['string','required'],

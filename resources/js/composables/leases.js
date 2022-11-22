@@ -41,6 +41,20 @@ export default function useLeases(){
         }
     }
 
+    const updateLease =  async (id)=>{
+        try {
+            await axios.patch(`/api/leases/${id}`, lease.value);
+            await router.go(-1)
+            toastr.success("Lease Details updated sucessfully")
+        } catch (e) {
+            for (const key in e.response.data.errors) {
+                errors.value = e.response.data.errors;
+            }
+            toastr.error("Error updating Lease Details")
+
+        }
+    }
+
  
     
 
@@ -54,5 +68,6 @@ export default function useLeases(){
         getLease,
         getLeases,
         getLeasesSorted,
+        updateLease,
     }
 }

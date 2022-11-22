@@ -67,8 +67,8 @@ export default function useProperties() {
                 for (const key in e.response.data.errors) {
                     errors.value = e.response.data.errors;
                 }
+                toastr.error("Error updating Property Details")
             // }
-            toastr.error("Error updating Property Details")
 
         }
     };
