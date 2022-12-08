@@ -22,3 +22,5 @@ You need to have PHP version **7.0** or above. Node.js version **8.5** or above.
 2. Start frontend by running `npm run dev`
 3. Open http://localhost:3000
 
+##### Screenshot
+![image](https://user-images.githubusercontent.com/28384422/206379854-cb4dd903-f582-4b22-b168-3857a0c23441.png)
